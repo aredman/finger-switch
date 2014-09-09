@@ -7,16 +7,21 @@ int main;
 	edge A;
 }
 
-class edge(point 1,point 2);
+class Edge;
 {
 	point 1;
 	point 2;
 	double length;
-	double angle1;
-	double angle2;
+	Angle angle1;
+	Angle angle2;
 }
 
-class point
+class Angle
+{
+	double value;
+}
+
+class Point
 {
 		//Angle measures from magnetometer, notated by Magnetometer 'n-1', 'n-2', 'n+1', 'n+2'
 	double MagNm1;
