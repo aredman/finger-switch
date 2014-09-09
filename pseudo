@@ -1,7 +1,10 @@
+#include <iostream>
+
+using namespace std;
+
 int main;
 {
 	edge A;
-	
 }
 
 class edge(point 1,point 2);
