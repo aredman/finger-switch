@@ -1,0 +1,30 @@
+//this is michael's pseudo code for the algorithm
+
+class Edge {
+	Edge(angle1, angle2, orientation, scale){
+		//make sure to scale the length according to the scale,
+		//which is the previous edge's length
+	}
+	angle1;
+	angle2;
+	orientation;
+	length(){
+		//calculate the length of the sides using the law of sines
+	}
+	toVector(){
+		//using the orientation and length, output a vector object
+	}
+};
+
+
+void toArrayOfScales(pointArray){
+	//the idea is to loop through the input data (of unknown form) and take the next two
+	//orientations, outputting an array of correctly sized edges
+	vector<Edge> EdgeArray;
+	double previousLength = 1;
+	for(int i = 0; i < AngleArray.size() - 2; i++){
+		EdgeArray[i] = Edge(AngleArray[i], AngleArray[i+2], previousLength);
+		previousLength = EdgeArray[i].length();
+	}
+	cout << EdgeArray << endl;
+}
