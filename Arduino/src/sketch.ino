@@ -9,12 +9,17 @@
 void setup() {
 	Serial.begin(115200);
 	while(!Serial);
-
 	Accel accelerometer;
 	Magnet magnetometer;
 
 	for(;;){
+		Serial << "Accel:";
 		accelerometer.read().print();
+		Serial << "Magnet:";
+		magnetometer.read().print();
+		Serial << endl;
+
+		delay(300);
 	}
 }
 
