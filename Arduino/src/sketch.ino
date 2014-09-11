@@ -14,7 +14,7 @@ void setup() {
 	Magnet magnetometer;
 
 	for(;;){
-		accelerometer.readDataFromSensor().print();
+		accelerometer.read().print();
 	}
 }
 
