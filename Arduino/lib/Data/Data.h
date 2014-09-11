@@ -13,27 +13,23 @@
 template <typename Type, int size>
 class DataType {
 	public:
-		DataType();
+		DataType(){
+			dataTime = millis();
+		}
+
 		Vector<Type,size> getData(){return data;};
 		unsigned long getTime(){return dataTime;};
-		void print();
+
+		void print(){
+			Serial << dataTime;
+
+			for(int i = 0; i < size; i++) Serial << ';' << data[i];
+			Serial << endl;
+		}
 	protected:
 		Vector<Type, size> data;
 		unsigned long dataTime;
 };
-
-template <typename Type, int size>
-DataType<Type, size>::DataType(){
-	dataTime = millis();
-}
-
-template <typename Type, int size>
-void DataType<Type, size>::print(){
-	Serial << dataTime;
-
-	for(int i = 0; i < size; i++) Serial << ';' << data[i];
-	Serial << endl;
-}
 
 ///////////////////////////////////////
 
