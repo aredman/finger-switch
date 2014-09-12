@@ -56,6 +56,7 @@ AccelData Accel::readDataFromSensor(){
 
 	Wire.endTransmission();
 
+	
 	return AccelData(accelerationVector);
 }
 
