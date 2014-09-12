@@ -4,10 +4,12 @@
 #include <Accel.h>
 #include <Magnet.h>
 #include <Serial.h>
+#include <Wire.h>
 
 
 void setup() {
 	Serial.begin(115200);
+	Wire.begin();
 	while(!Serial);
 	Accel accelerometer;
 	Magnet magnetometer;
