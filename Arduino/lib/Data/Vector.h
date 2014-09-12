@@ -7,6 +7,8 @@
 template <typename type, int length = 1>
 class Vector {
 	public:
+		//constructor
+		Vector(){ memset(array,0,length);}
 		type array[length];
 		int size(){return length;};
 
