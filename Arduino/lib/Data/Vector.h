@@ -8,18 +8,17 @@ template <typename type, int length = 1>
 class Vector {
 	public:
 		//constructor
-		Vector(){ memset(array,0,length);}
 		type array[length];
 		int size(){return length;};
 
-		type& operator[](int i){return length == 0 ? array[i] : array[i%length];};
-		Vector<type, length> operator=(Vector<type,length>& rhs){ for(int i = length; i; i--) array[i] = rhs[i]; return *this;};
+		type& operator[](int i){return array[i];};
+		Vector<type, length> operator=(Vector<type,length>& rhs){ for(int i = 0; i < length; i++) array[i] = rhs[i]; return *this;};
 
-		Vector<type, length>& operator+=(Vector<type,length>& rhs){ for(int i = length; i; i--) array[i] += rhs[i]; return this;};
-		Vector<type, length>& operator-=(Vector<type,length>& rhs){ for(int i = length; i; i--) array[i] -= rhs[i]; return this;};
-		Vector<type, length>& operator*=(Vector<type,length>& rhs){ for(int i = length; i; i--) array[i] *= rhs[i]; return this;};
-		Vector<type, length>& operator/=(Vector<type,length>& rhs){ for(int i = length; i; i--) array[i] /= rhs[i]; return this;};
-		Vector<type, length>& operator%=(Vector<type,length>& rhs){ for(int i = length; i; i--) array[i] %= rhs[i]; return this;};
+		Vector<type, length>& operator+=(Vector<type,length>& rhs){ for(int i = 0; i < length; i++) array[i] += rhs[i]; return this;};
+		Vector<type, length>& operator-=(Vector<type,length>& rhs){ for(int i = 0; i < length; i++) array[i] -= rhs[i]; return this;};
+		Vector<type, length>& operator*=(Vector<type,length>& rhs){ for(int i = 0; i < length; i++) array[i] *= rhs[i]; return this;};
+		Vector<type, length>& operator/=(Vector<type,length>& rhs){ for(int i = 0; i < length; i++) array[i] /= rhs[i]; return this;};
+		Vector<type, length>& operator%=(Vector<type,length>& rhs){ for(int i = 0; i < length; i++) array[i] %= rhs[i]; return this;};
 
 		bool operator<(Vector<type,length>& rhs){ return magnitude() < rhs.magnitude();}
 		bool operator>(Vector<type,length>& rhs){ return magnitude() > rhs.magnitude();}
