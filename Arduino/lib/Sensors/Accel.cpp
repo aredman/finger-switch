@@ -44,7 +44,7 @@ AccelData Accel::readDataFromSensor(){
 	Vector<int, 3> accelerationVector;
 
 	//each axis reading comes in 10 bit resolution
-	//Least Significant Byte first!!
+	//Least Significant Byte first
 	if(Wire.available()){
 		int tmp = Wire.read();
 		accelerationVector[0] = ((int)Wire.read() << 8) | tmp;
