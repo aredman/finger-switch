@@ -17,7 +17,7 @@ class DataType {
 			dataTime = millis();
 		}
 
-		Vector<Type,size> getData(){return data;};
+		Vector<Type,size>& getData(){return data;};
 		unsigned long getTime(){return dataTime;};
 
 		void print(){
