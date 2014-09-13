@@ -30,6 +30,7 @@ void setup() {
 			printer.add(magnetometer.read().getData());
 			printer.print();
 		}
+		while(Serial.available()) Serial.read();
 		printer.next();
 	}
 }
