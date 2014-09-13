@@ -52,6 +52,16 @@ class Import{
 			dataArray = returnTable(lineArray);
 			return dataArray;
 		}
+
+		intTable cut(intTable bigTable,int index){
+			intTable smallTable;
+			for(int i = 0;i<bigTable.size();i++){
+					if(bigTable[i][0] == index){
+						smallTable.push_back(bigTable[i]);
+					}
+			}
+			return smallTable;
+		}
 };
 
 #endif
