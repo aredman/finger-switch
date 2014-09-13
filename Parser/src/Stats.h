@@ -12,20 +12,25 @@ class Stats {
 		long double mean(std::vector<Type> input){
 			int size = input.size();
 			long double sum = 0;
-			for int(i = 0; i < size; i++) sum += input[i];
-			sum /= size;
+			for(int i = 0; i < size; i++) sum += input[i];
+			return sum / size;
 		}
 		long double variance(std::vector<Type> input){
 			//variance is the sum of the squares, divided by the DOF, subtracting the mean
 			int size = input.size();
+			long double average = mean(input);
 			long double sum = 0;
-			for(int i = 0; i < size; i++) sum += input[i] * input[i];
-			sum /= size;
-			long double mean = mean(input);
-			return (sum / size) - mean * mean;
+			for(int i = 0; i < size; i++){
+				long double difference = input[i] - average;
+				sum += difference * difference;
+			}
+			return sum / size;
 		}
 		long double stdDev(std::vector<Type> input){
 			return sqrt(variance(input));
+		}
+		long double accuracy(std::vector<Type> input){
+			return stdDev(input) / sqrt(input.size());
 		}
 };
 
