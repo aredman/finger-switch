@@ -25,7 +25,7 @@ void setup() {
 
 	for(;;){
 		while(block());
-		while(block()){
+		for(int i = 0; i < 5000; i++){
 			printer.add(accelerometer.read().getData());
 			printer.add(magnetometer.read().getData());
 			printer.print();
