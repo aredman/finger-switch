@@ -7,6 +7,9 @@
 #include <iostream>
 #include <vector>
 
+typedef std::vector<int> row;
+typedef std::vector< std::vector<int> > intTable;
+
 class Import{	
 	public:
 		std::vector<std::string> addline(std::istream& inputFile){
@@ -16,11 +19,12 @@ class Import{
 				std::getline(inputFile,line);	
 				inputVector.push_back(line);
 			}
+			inputVector.pop_back();
 			return inputVector;
 		}
 
-		std::vector<int> parseLine(std::string inputLine){
-			std::vector<int> numberData;
+		row parseLine(std::string inputLine){
+			row numberData;
 			std::stringstream inputStream(inputLine);
 			std::string piece;
 			while(inputStream.eof()==0){
@@ -30,14 +34,24 @@ class Import{
 			return numberData;
 		}
 
-		std::vector< std::vector<int> > returnVector(std::vector<std::string> inputLine){
-			std::vector< std::vector<int> > final;
+		intTable returnTable(std::vector<std::string> inputLine){
+			intTable final;
 			for(int i = 0;i < inputLine.size();i++){
 				final.push_back(parseLine(inputLine[i]));
 			}
 			return final;
 		}
 
+		intTable tabulate(std::string filename){
+			std::ifstream inputStream;
+			inputStream.open(filename.c_str());
+			std::vector<std::string> lineArray;
+			lineArray = addline(inputStream);
+
+			intTable dataArray;
+			dataArray = returnTable(lineArray);
+			return dataArray;
+		}
 };
 
 #endif
