@@ -5,6 +5,7 @@
 #include <Magnet.h>
 #include <Serial.h>
 #include <Wire.h>
+#include <VectPrint.h>
 
 //simple function to block. I'm too lazy to make a class
 bool block(){
@@ -16,18 +17,20 @@ bool block(){
 void setup() {
 	Serial.begin(115200);
 	Wire.begin();
-	while(!Serial);
 	Accel accelerometer;
 	Magnet magnetometer;
+	VectPrinter<int> printer;
+
+	while(!Serial);
 
 	for(;;){
-		Serial << "Accel:";
-		accelerometer.read().print();
-		Serial << "Magnet:";
-		magnetometer.read().print();
-		Serial << endl;
-
-		delay(300);
+		while(block());
+		while(block()){
+			printer.add(accelerometer.read().getData());
+			printer.add(magnetometer.read().getData());
+			printer.print();
+		}
+		printer.next();
 	}
 }
 
