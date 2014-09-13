@@ -6,6 +6,12 @@
 #include <Serial.h>
 #include <Wire.h>
 
+//simple function to block. I'm too lazy to make a class
+bool block(){
+	if(Serial.available() == 0) return true;
+	Serial.read();
+	return false;
+}
 
 void setup() {
 	Serial.begin(115200);
