@@ -53,7 +53,7 @@ class Import{
 			return dataArray;
 		}
 
-		intTable cut(intTable bigTable,int index){
+		intTable rowCut(intTable bigTable,int index){
 			intTable smallTable;
 			for(int i = 0;i<bigTable.size();i++){
 					if(bigTable[i][0] == index){
@@ -62,6 +62,22 @@ class Import{
 			}
 			return smallTable;
 		}
+
+		intTable columnCut(intTable bigTable,int abound, int bbound){
+			intTable smallTable;
+			for(int i = 0; i < bigTable.size();i++){
+				smallTable.resize(smallTable.size()+1);
+				for(int j = 0; j < bigTable[i].size();j++){
+					if(j >= abound && j <= bbound){
+						smallTable[i].push_back(bigTable[i][j]);
+					}
+				}
+			}
+			std::cout << "H3llo World" << std::endl;
+			return smallTable;
+		}
+
+
 };
 
 #endif
