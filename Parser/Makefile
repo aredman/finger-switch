@@ -5,7 +5,7 @@ SRCDIR = ./src
 BINDIR = ./bin
 
 #make everything
-all: $(BINDIR)/importTest $(BINDIR)/StatsTest
+all: $(BINDIR)/importTest $(BINDIR)/StatsTest $(BINDIR)/importTest
 
 #test programs
 $(BINDIR)/importTest:
@@ -13,3 +13,6 @@ $(BINDIR)/importTest:
 
 $(BINDIR)/StatsTest:
 	g++ -o $(BINDIR)/StatsTest $(SRCDIR)/StatsTest.cpp
+
+$(BINDIR)/importTest:
+	g++ -o $(BINDIR)/importTest $(SRCDIR)/importTest.cpp
