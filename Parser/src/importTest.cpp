@@ -7,18 +7,17 @@ using namespace std;
 
 int main(){
 	intTable table;
-	intTable point0;
-	intTable point01;
+	intTable parsedTable;
 	std::string filename = "test1";
+
 	Import data;
 	table = data.tabulate(filename);
-	point0 = data.rowCut(table,4);
-	cout << "H2llo World" << endl;
-	point01 = data.columnCut(point0,0,2);
-	cout << "H1llo World" << endl;
-	for(int i = 0; i<point0.size();i++){
-		for(int j = 0;j<point01[i].size();j++){
-			cout << point01[i][j];
+
+	parsedTable = data.tableCut(table,4,4,6);
+
+	for(int i = 0; i<parsedTable.size();i++){
+		for(int j = 0;j<parsedTable[i].size();j++){
+			cout << parsedTable[i][j];
 			cout << ",";
 		}
 		cout << endl;

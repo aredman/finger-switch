@@ -73,11 +73,17 @@ class Import{
 					}
 				}
 			}
-			std::cout << "H3llo World" << std::endl;
 			return smallTable;
 		}
 
+		intTable tableCut(intTable bigTable,int index,int abound,int bbound){
+				intTable mediumTable;
+				intTable smallTable;
 
+				mediumTable = rowCut(bigTable,index);
+				smallTable = columnCut(mediumTable,abound,bbound);
+				return smallTable;
+		}
 };
 
 #endif
