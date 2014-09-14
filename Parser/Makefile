@@ -9,7 +9,7 @@ all: $(BINDIR)/importTest $(BINDIR)/StatsTest
 
 #test programs
 $(BINDIR)/importTest:
-	g++ -o $(BINDIR)/importTest $(SRCDIR)/importTest.cpp
+	g++ -o $(BINDIR)/linearTest $(SRCDIR)/linearTest.cpp
 
 $(BINDIR)/StatsTest:
 	g++ -o $(BINDIR)/StatsTest $(SRCDIR)/StatsTest.cpp
