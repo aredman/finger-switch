@@ -13,7 +13,7 @@ int main(){
 	Import data;
 	table = data.tabulate(filename);
 
-	parsedTable = data.explode(table,6);
+	parsedTable = data.getMagnet(table,6);
 
 	for(int i = 0; i<parsedTable.size();i++){
 		for(int j = 0;j<parsedTable[i].size();j++){
