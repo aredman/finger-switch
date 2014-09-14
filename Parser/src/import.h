@@ -84,19 +84,17 @@ class Import{
 				smallTable = columnCut(mediumTable,abound,bbound);
 				return smallTable;
 		}
-};
 
 
 		std::vector<intTable> explode(intTable bigTable,int rows){
 			std::vector<intTable> array;
 			intTable table;
 			for(int i = 0; i<rows;i++){
-				table = tableCut(bigTable,i,1,3);
-				array.push_back(table);
-				table = tableCut(bigTable,i,4,6);
-				array.push_back(table);
+				array.push_back(tableCut(bigTable,i,1,3));
+				array.push_back(tableCut(bigTable,i,4,6));
 			}
 			return array;
 		}
 
+};
 #endif

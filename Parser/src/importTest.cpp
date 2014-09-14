@@ -7,20 +7,23 @@ using namespace std;
 
 int main(){
 	intTable table;
-	intTable parsedTable;
+	vector<intTable> parsedTable;
 	std::string filename = "test1";
 
 	Import data;
 	table = data.tabulate(filename);
 
-	parsedTable = data.tableCut(table,4,4,6);
+	parsedTable = data.explode(table,6);
 
 	for(int i = 0; i<parsedTable.size();i++){
 		for(int j = 0;j<parsedTable[i].size();j++){
-			cout << parsedTable[i][j];
-			cout << ",";
+			for(int k = 0; k < parsedTable[i][j].size();k++){
+				cout << parsedTable[i][j][k];
+				cout << ",";
+			}
+			cout << endl;
 		}
-		cout << endl;
+			cout << "------" << endl;
 	}
 };
 
