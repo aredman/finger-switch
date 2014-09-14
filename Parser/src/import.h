@@ -86,4 +86,17 @@ class Import{
 		}
 };
 
+
+		std::vector<intTable> explode(intTable bigTable,int rows){
+			std::vector<intTable> array;
+			intTable table;
+			for(int i = 0; i<rows;i++){
+				table = tableCut(bigTable,i,1,3);
+				array.push_back(table);
+				table = tableCut(bigTable,i,4,6);
+				array.push_back(table);
+			}
+			return array;
+		}
+
 #endif
