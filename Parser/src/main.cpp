@@ -14,16 +14,16 @@ using namespace std;
 
 int main(int argc, char** argv){
 	//get the aruments as a string object
-	if(argc == 0){
+	if(argc == 1){
 		cout << "No arguments supplied" << endl;
 		exit(1);
 	}
 	ArgString args(argc, argv);
 
 	//print information
-	cout << "Extracting data from:       " << args.get()[0] << endl;
-	cout << "Accelerometer Calibrations: " << args.get()[1] << endl;
-	cout << "Magnetometer Calibrations:  " << args.get()[2] << endl;
+	cout << "Extracting data from:       " << args.get()[1] << endl;
+	cout << "Accelerometer Calibrations: " << args.get()[2] << endl;
+	cout << "Magnetometer Calibrations:  " << args.get()[3] << endl;
 
 
 }
