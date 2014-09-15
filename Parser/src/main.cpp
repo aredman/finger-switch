@@ -45,6 +45,9 @@ int main(int argc, char** argv){
 	cout << "Putting data into the calibration vectors" << endl;
 	vector< Calibration< Measurement<int> > > accelCalVector;
 	vector< Calibration< Measurement<int> > > magnetCalVector;
+	for(int i = 0; i < importedCalVector.size(); i++){
+
+	}
 	
 
 
