@@ -29,7 +29,7 @@ int main(int argc, char** argv){
 
 
 	//with this information, import the data file
-	Import importedData;
+	Import importedData(args.get()[1]);
 	
 
 	//after getting a vector of the data (of accelerometer data) calibrate the vectors
