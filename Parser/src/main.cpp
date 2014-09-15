@@ -26,4 +26,14 @@ int main(int argc, char** argv){
 	cout << "Magnetometer Calibrations:  " << args.get()[3] << endl;
 
 
+	//with this information, import the data file
+
+	//after getting a vector of the data (of accelerometer data) calibrate the vectors
+	//using the calibration files (requires another library)
+
+	//with the calibrated data, calculate the angle measurements, taking care to propagate error
+
+	//with the angles, construct an array of ijk vectors, using the simple algorithm, and add the error measurements
+	//spit them out, too, so we can calculate the stuff by hand if need be
+
 }
