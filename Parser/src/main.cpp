@@ -29,7 +29,7 @@ int main(int argc, char** argv){
 	//with this information, import the data file
 
 	//after getting a vector of the data (of accelerometer data) calibrate the vectors
-	//using the calibration files (requires another library)
+	//using the calibration files (requires another library to load the vectors)
 
 	//with the calibrated data, calculate the angle measurements, taking care to propagate error
 
