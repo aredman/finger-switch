@@ -6,9 +6,7 @@
 #include <sstream>
 #include <iostream>
 #include <vector>
-
-typedef std::vector<int> row;
-typedef std::vector< std::vector<int> > intTable;
+#include "Measurements.h"
 
 class Import{	
 	public:
@@ -23,8 +21,8 @@ class Import{
 			return inputVector;
 		}
 
-		row parseLine(std::string inputLine){
-			row numberData;
+		std::vector<int> parseLine(std::string inputLine){
+			std::vector<int> numberData;
 			std::stringstream inputStream(inputLine);
 			std::string piece;
 			while(inputStream.eof()==0){
@@ -84,19 +82,30 @@ class Import{
 				smallTable = columnCut(mediumTable,abound,bbound);
 				return smallTable;
 		}
-};
 
+		std::vector<intTable> getAccel(intTable bigTable,int rows){
+			std::vector<intTable> accelerometerData;
+			for(int i = 0; i<rows;i++){
+				accelerometerData.push_back(tableCut(bigTable,i,1,3));
+			}
+			return accelerometerData;
+		}
 
+		std::vector<intTable> getMagnet(intTable bigTable,int rows){
+			std::vector<intTable> magnetometerData;
+			for(int i = 0; i<rows;i++){
+				magnetometerData.push_back(tableCut(bigTable,i,4,6));
+			}
+			return magnetometerData;
+		}
 		std::vector<intTable> explode(intTable bigTable,int rows){
 			std::vector<intTable> array;
-			intTable table;
 			for(int i = 0; i<rows;i++){
-				table = tableCut(bigTable,i,1,3);
-				array.push_back(table);
-				table = tableCut(bigTable,i,4,6);
-				array.push_back(table);
+				array.push_back(tableCut(bigTable,i,1,3));
+				array.push_back(tableCut(bigTable,i,4,6));
 			}
 			return array;
 		}
 
+};
 #endif
