@@ -6,9 +6,18 @@
 #include "linearCal.h"
 #include "Measurements.h"
 #include "Stats.h"
+#include "ArgString.h"
 
 #include <vector>
 
+using namespace std;
+
 int main(int argc, char** argv){
-	
+	//get the aruments as a string object
+	ArgString args(argc, argv);
+
+	//print information
+	cout << "Extracting data from:       " << args.get()[0] << endl;
+	cout << "Accelerometer Calibrations: " << args.get()[1] << endl;
+	cout << "Magnetometer Calibrations:  " << args.get()[2] << endl;
 }
