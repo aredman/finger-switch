@@ -1,6 +1,6 @@
 #this is a comment that will not exist in the real file
 #row 1 = accelerometer
 #row 2 = magnetometer
-#mx	bx	my	by	mz	bz
-234;	235.32;	1123.2;	1245.2;	1237.3;	73;
-285;	35.32;	113.2;	145.2;	1235;	7;
+#mx	bx	sx	my	by	sy	mz	bz	sz
+234;	235.32;	1123.2;	1245.2;	1237.3;	73;	245;	34	23478;
+285;	35.32;	113.2;	145.2;	1235;	7;	23984;	348.2	238.2;
