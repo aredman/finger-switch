@@ -26,3 +26,7 @@ $(BINDIR)/ArgStringTest: $(SRCDIR)/ArgStringTest.cpp $(SRCDIR)/ArgString.h
 #main program
 $(BINDIR)/Parser: $(BINDIR)/importTest $(BINDIR)/StatsTest $(BINDIR)/linearTest $(BINDIR)/AngleAnalyzerTest $(BINDIR)/ArgStringTest $(SRCDIR)/main.cpp
 	g++ -o $(BINDIR)/Parser $(SRCDIR)/main.cpp
+
+#testing
+test: $(BINDIR)/Parser
+	$(BINDIR)/Parser ../Data/Trial1/Trial1 ../Calibrations/main.cal
