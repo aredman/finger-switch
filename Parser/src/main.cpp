@@ -34,8 +34,8 @@ int main(int argc, char** argv){
 
 	//after getting a vector of the data (of accelerometer data) calibrate the vectors
 	//using the calibration files (requires another library to load the vectors)
-	vector< Calibration< Measurements<int> > > accelCalVector;
-	vector< Calibration< Measurements<int> > > magnetCalVector;
+	vector< Calibration< Measurement<int> > > accelCalVector;
+	vector< Calibration< Measurement<int> > > magnetCalVector;
 
 
 	//==========================================================================================
