@@ -34,11 +34,18 @@ int main(int argc, char** argv){
 
 	//after getting a vector of the data (of accelerometer data) calibrate the vectors
 	//using the calibration files (requires another library to load the vectors)
+	//TODO This NEEDS to be turned into doubles. Otherwise this is extremely inaccurate
 	Import importCal;
 	vector< vector<int> > importedCalVector = importCal.tabulate(args.get()[2]);
+	if(importedCalVector.size() != 2){
+		cout << "Wrong vector size" << endl;
+		exit(2);
+	}
 
+	cout << "Putting data into the calibration vectors" << endl;
 	vector< Calibration< Measurement<int> > > accelCalVector;
 	vector< Calibration< Measurement<int> > > magnetCalVector;
+	
 
 
 	//==========================================================================================
