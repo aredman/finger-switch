@@ -20,6 +20,9 @@ $(BINDIR)/importTest: $(SRCDIR)/importTest.cpp $(SRCDIR)/import.h
 $(BINDIR)/AngleAnalyzerTest: $(SRCDIR)/AngleAnalyzerTest.cpp $(SRCDIR)/AngleAnalyzer.h
 	g++ -o $(BINDIR)/AngleAnalyzerTest $(SRCDIR)/AngleAnalyzerTest.cpp
 
+$(BINDIR)/ArgString: $(SRCDIR)/ArgStringTest.cpp $(SRCDIR)/ArgString.h
+	g++ -o $(BINDIR)/ArgStringTest $(SRCDIR)/ArgStringTest.cpp
+
 #main program
-$(BINDIR)/Parser: $(BINDIR)/importTest $(BINDIR)/StatsTest $(BINDIR)/linearTest $(BINDIR)/AngleAnalyzerTest
+$(BINDIR)/Parser: $(BINDIR)/importTest $(BINDIR)/StatsTest $(BINDIR)/linearTest $(BINDIR)/AngleAnalyzerTest $(BINDIR)/ArgString
 	g++ -o $(BINDIR)/Parser $(SRCDIR)/main.cpp
