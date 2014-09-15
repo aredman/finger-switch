@@ -5,14 +5,17 @@ SRCDIR = ./src
 BINDIR = ./bin
 
 #make everything
-all: $(BINDIR)/importTest $(BINDIR)/StatsTest $(BINDIR)/importTest
+all: $(BINDIR)/importTest $(BINDIR)/StatsTest $(BINDIR)/linearTest $(BINDIR)/AngleAnalyzerTest
 
 #test programs
-$(BINDIR)/importTest:
+$(BINDIR)/linearTest: $(SRCDIR)/linearTest.cpp $(SRCDIR)/linearCal.h
 	g++ -o $(BINDIR)/linearTest $(SRCDIR)/linearTest.cpp
 
-$(BINDIR)/StatsTest:
+$(BINDIR)/StatsTest: $(SRCDIR)/StatsTest.cpp $(SRCDIR)/Stats.h
 	g++ -o $(BINDIR)/StatsTest $(SRCDIR)/StatsTest.cpp
 
-$(BINDIR)/importTest:
+$(BINDIR)/importTest: $(SRCDIR)/importTest.cpp $(SRCDIR)/import.h
 	g++ -o $(BINDIR)/importTest $(SRCDIR)/importTest.cpp
+
+$(BINDIR)/AngleAnalyzerTest: $(SRCDIR)/AngleAnalyzerTest.cpp $(SRCDIR)/AngleAnalyzer.h
+	g++ -o $(BINDIR)/AngleAnalyzerTest $(SRCDIR)/AngleAnalyzerTest.cpp
