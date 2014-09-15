@@ -22,4 +22,4 @@ $(BINDIR)/AngleAnalyzerTest: $(SRCDIR)/AngleAnalyzerTest.cpp $(SRCDIR)/AngleAnal
 
 #main program
 $(BINDIR)/Parser: $(BINDIR)/importTest $(BINDIR)/StatsTest $(BINDIR)/linearTest $(BINDIR)/AngleAnalyzerTest
-	g++ -o $(BINDIR)/Parser main.cpp
+	g++ -o $(BINDIR)/Parser $(SRCDIR)/main.cpp
