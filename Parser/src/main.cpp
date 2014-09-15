@@ -14,8 +14,8 @@ using namespace std;
 
 int main(int argc, char** argv){
 	//get the aruments as a string object
-	if(argc == 1){
-		cout << "No arguments supplied" << endl;
+	if(argc != 4){
+		cout << "Wrong numnber of arguments supplied" << endl;
 		exit(1);
 	}
 	ArgString args(argc, argv);
