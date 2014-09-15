@@ -6,9 +6,7 @@
 #include <sstream>
 #include <iostream>
 #include <vector>
-
-typedef std::vector<int> row;
-typedef std::vector< std::vector<int> > intTable;
+#include "Measurements.h"
 
 class Import{	
 	public:
@@ -23,8 +21,8 @@ class Import{
 			return inputVector;
 		}
 
-		row parseLine(std::string inputLine){
-			row numberData;
+		std::vector<int> parseLine(std::string inputLine){
+			std::vector<int> numberData;
 			std::stringstream inputStream(inputLine);
 			std::string piece;
 			while(inputStream.eof()==0){
