@@ -10,6 +10,7 @@
 //simple function to block. I'm too lazy to make a class
 bool block(){
 	if(Serial.available() == 0) return true;
+	if(Serial.peek() == 'c') return true;
 	Serial.read();
 	return false;
 }
@@ -32,9 +33,6 @@ void calibration(){
 			Serial << roll << ';';
 			Serial << pitch << ';';
 			Serial << yaw << ';';
-			Serial << sin(roll) << ';';
-			Serial << sin(pitch) << ';';
-			Serial << sin(yaw) << ';';
 			printer.print();
 		}
 		printer.flush();
@@ -54,9 +52,9 @@ void calibration(){
 				blocked = !blocked;
 				break;
 		}
-		while(roll > 360) roll -= 360;
-		while(pitch > 360) pitch -= 360;
-		while(yaw > 360) yaw -= 360;
+		while(roll >= 360) roll -= 360;
+		while(pitch >= 360) pitch -= 360;
+		while(yaw >= 360) yaw -= 360;
 	}
 }
 
@@ -70,7 +68,9 @@ void setup() {
 	while(!Serial);
 
 	for(;;){
-		while(block()) if(Serial.read() == 'c') calibration();
+		while(block()){
+			if(Serial.read() == 'c') calibration();
+		}
 		for(int i = 0; i < 5000; i++){
 			printer.add(accelerometer.read().getData());
 			printer.add(magnetometer.read().getData());
