@@ -68,6 +68,14 @@ int main(int argc, char** argv){
 	Calibration yMagnet(importedCalVector[1][3],importedCalVector[1][4]);
 	Calibration zMagnet(importedCalVector[1][6],importedCalVector[1][7]);
 
+	//if the calibration is loaded correctly, we output the coefficients
+	cout << "Accelerometer x = "; printf("%fx + %f", importedCalVector[0][0], importedCalVector[0][1]); cout << endl;
+	cout << "Accelerometer y = "; printf("%fx + %f", importedCalVector[0][3], importedCalVector[0][4]); cout << endl;
+	cout << "Accelerometer z = "; printf("%fx + %f", importedCalVector[0][6], importedCalVector[0][7]); cout << endl;
+	cout << "Magnettometer x = "; printf("%fx + %f", importedCalVector[1][0], importedCalVector[1][1]); cout << endl;
+	cout << "Magnettometer y = "; printf("%fx + %f", importedCalVector[1][3], importedCalVector[1][4]); cout << endl;
+	cout << "Magnettometer z = "; printf("%fx + %f", importedCalVector[1][6], importedCalVector[1][7]); cout << endl;
+
 	//Load the calibration objects into vectors based on sensor and axis
 	//All accelerometer calibrations are in the same vector
 	//All magnetometer calibrations are in the same vector
