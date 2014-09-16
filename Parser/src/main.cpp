@@ -39,7 +39,16 @@ int main(int argc, char** argv){
 	//Cut up rawData table into magnetometer and accelerometer tables
 	dTable accelData = importedData.columnCut(rawData,1,3);
 	dTable magnetData = importedData.columnCut(rawData,4,6);
-	
+
+	//Cut up rawData table into magnetometer and accelerometer tables by index
+	vector<dTable> accelDataVector;
+	for(int i = 1; i < 22;i++){
+		accelDataVector.push_back(importedData.tableCut(rawData,i,1,3));
+	}
+	vector<dTable> magnetDataVector;
+	for(int i = 1; i < 22;i++){
+		magnetDataVector.push_back(importedData.tableCut(rawData,i,4,6));
+	}
 
 	//=====================================================================
 	//Import the calibrations from a file
@@ -92,30 +101,47 @@ int main(int argc, char** argv){
 	dTable calibratedMagnetData = fixMagnetometer.fixTable(magnetData);
 	cout << "Calibration Completed" << endl;
 
+	//Apply sensor calibration objects to vectors of tables
+	vector<dTable> calibratedAccelDataVector;
+	vector<dTable> calibratedMagnetDataVector;
+
+	for(int i = 0; i < accelDataVector.size();i++){
+		calibratedAccelDataVector.push_back(fixAcceleration.fixTable(accelDataVector[i]));
+	}
+	for(int i = 0; i < magnetDataVector.size();i++){
+		calibratedMagnetDataVector.push_back(fixMagnetometer.fixTable(magnetDataVector[i]));
+	}
+
 	//=====================================================================
 	//Create output file stream to save calibrated data
 	ofstream accelFile;
 	string afilename = args.get()[1]+"-accel.data";
 	accelFile.open(afilename.c_str());
 
-	for(int i = 0; i < calibratedAccelData.size();i++){
-		accelFile << i / 5000 + 1 << ",";
-		for(int j = 0;j < calibratedAccelData[i].size();j++){
-			accelFile << calibratedAccelData[i][j] << ",";
+	for(int i = 0; i < calibratedAccelDataVector.size();i++){
+		accelFile << i + 1 << "==Table Break==" << endl;
+		for(int j = 0;j < calibratedAccelDataVector[i].size();j++){
+			accelFile << i + 1 << ",";
+			for(int k = 0; k < calibratedAccelDataVector[i][j].size();k++){
+				accelFile << calibratedAccelDataVector[i][j][k] << ",";
+			}
+			accelFile << endl;
 		}
-		accelFile << endl;
 	}
 	accelFile.close();
 
 	ofstream magnetFile;
 	string mfilename = args.get()[1]+"-magnet.data";
 	magnetFile.open(mfilename.c_str());
-	for(int i = 0; i < calibratedMagnetData.size();i++){
-		magnetFile << i / 5000 + 1 << ",";
-		for(int j = 0;j < calibratedMagnetData[i].size();j++){
-			magnetFile << calibratedMagnetData[i][j] << ",";
+	for(int i = 0; i < calibratedMagnetDataVector.size();i++){
+		magnetFile << i + 1 << "==Table Break==" << endl;
+		for(int j = 0;j < calibratedMagnetDataVector[i].size();j++){
+			magnetFile << i + 1 << ",";
+			for(int k = 0; k < calibratedMagnetDataVector[i][j].size();k++){
+				magnetFile << calibratedMagnetDataVector[i][j][k] << ",";
+			}
+			magnetFile << endl;
 		}
-		magnetFile << endl;
 	}
 	magnetFile.close();
 
