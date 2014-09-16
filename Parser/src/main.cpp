@@ -10,6 +10,7 @@
 
 #include <vector>
 #include <fstream>
+#include <iostream>
 #include <string>
 
 using namespace std;
@@ -83,7 +84,36 @@ int main(int argc, char** argv){
 	SensorCalibration fixMagnetometer(magnetCalVector);
 
 	//Apply sensor calibration objects to tables
+	cout << "Beginning Calibration process" << endl;
+	calibratedAccelData = fixAcceleration.fixTable(accelData);
+	calibratedMagnetData = fixAcceleration.fixTable(magnetData);
+	cout << "Calibration Completed" << endl;
 
+	//Create output file stream to save calibrated data
+	ofstream accelFile;
+	string afilename = args.get()[1]+"-accel.data";
+	string mfilename = args.get()[1]+"-magnet.data";
+	accelFile.open(afilename.c_str());
+
+	for(int i = 0; i<calibratedAccelData.size();i++){
+		accelFile << i/5000+1 << ",";
+		for(int j = 0;j<calibratedAccelData[i].size();j++){
+			accelFile << calibratedAccelData[i][j] << ",";
+		}
+		accelFile << endl;
+	}
+	accelFile.close();
+
+	ofstream magnetFile;
+	magnetFile.open(mfilename.c_str());
+	for(int i = 0; i<calibratedMagnetData.size();i++){
+		magnetFile << i/5000+1 << ",";
+		for(int j = 0;j<calibratedMagnetData[i].size();j++){
+			magnetFile << calibratedMagnetData[i][j] << ",";
+		}
+		magnetFile << endl;
+	}
+	magnetFile.close();
 
 	//==========================================================================================
 	//with the calibrated data, calculate the angle measurements, taking care to propagate error
