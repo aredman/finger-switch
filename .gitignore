@@ -1,3 +1,5 @@
 *.swp
 *.gch
 /Parser/bin
+/Data/Trial1/Trial1-accel.data
+/Data/Trial1/Trial1-magnet.data
