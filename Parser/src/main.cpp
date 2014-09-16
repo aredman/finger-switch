@@ -26,28 +26,22 @@ int main(int argc, char** argv){
 	//print information
 	cout << "Extracting data from:       " << args.get()[1] << endl;
 	cout << "Accelerometer Calibrations: " << args.get()[2] << endl;
+	//=====================================================================
 
 
-	//with this information, import the data file
-	//create five tables to hold data.
-	dTable rawData;
-	dTable accelData;
-	dTable magnetData;
-	dTable calibratedAccelData;
-	dTable calibratedMagnetData;
 	//Create an import object which pulls information from
 	//a csv and converts it two doubles
 	Import importedData;
+
 	//Load the imported data into the raw data object
-	rawData = importedData.tabulate(args.get()[1]);
+	dTable rawData = importedData.tabulate(args.get()[1]);
+
 	//Cut up rawData table into magnetometer and accelerometer tables
-	accelData = importedData.columnCut(rawData,4,6);
-	magnetData = importedData.columnCut(rawData,1,3);
+	dTable accelData = importedData.columnCut(rawData,1,3);
+	dTable magnetData = importedData.columnCut(rawData,4,6);
 	
 
-	//after getting a vector of the data (of accelerometer data) calibrate the vectors
-	//using the calibration files (requires another library to load the vectors)
-	//TODO This NEEDS to be turned into doubles. Otherwise this is extremely inaccurate
+	//=====================================================================
 	//Import the calibrations from a file
 	Import importCal;
 	dTable importedCalVector = importCal.tabulate(args.get()[2]);
@@ -57,8 +51,8 @@ int main(int argc, char** argv){
 	}
 
 	cout << "Putting data into the calibration vectors" << endl;
-		vector< Calibration > accelCalVector;
-		vector< Calibration > magnetCalVector;
+	vector< Calibration > accelCalVector;
+	vector< Calibration > magnetCalVector;
 
 	//Creates calibration objects with their respective calibrations
 	Calibration xAccel(importedCalVector[0][0],importedCalVector[0][1]);
@@ -67,6 +61,14 @@ int main(int argc, char** argv){
 	Calibration xMagnet(importedCalVector[1][0],importedCalVector[1][1]);
 	Calibration yMagnet(importedCalVector[1][3],importedCalVector[1][4]);
 	Calibration zMagnet(importedCalVector[1][6],importedCalVector[1][7]);
+
+	//if the calibration is loaded correctly, we output the coefficients
+	cout << "Accelerometer x = "; printf("%fx + %f", importedCalVector[0][0], importedCalVector[0][1]); cout << endl;
+	cout << "Accelerometer y = "; printf("%fx + %f", importedCalVector[0][3], importedCalVector[0][4]); cout << endl;
+	cout << "Accelerometer z = "; printf("%fx + %f", importedCalVector[0][6], importedCalVector[0][7]); cout << endl;
+	cout << "Magnettometer x = "; printf("%fx + %f", importedCalVector[1][0], importedCalVector[1][1]); cout << endl;
+	cout << "Magnettometer y = "; printf("%fx + %f", importedCalVector[1][3], importedCalVector[1][4]); cout << endl;
+	cout << "Magnettometer z = "; printf("%fx + %f", importedCalVector[1][6], importedCalVector[1][7]); cout << endl;
 
 	//Load the calibration objects into vectors based on sensor and axis
 	//All accelerometer calibrations are in the same vector
@@ -79,25 +81,26 @@ int main(int argc, char** argv){
 	magnetCalVector.push_back(yMagnet);	//MagnetCalVector[1]
 	magnetCalVector.push_back(zMagnet);	//MagnetCalVector[2]
 
+	//=====================================================================
 	//Create sensor calibration objects for accelerometer and magnetometer
 	SensorCalibration fixAcceleration(accelCalVector);
 	SensorCalibration fixMagnetometer(magnetCalVector);
 
 	//Apply sensor calibration objects to tables
 	cout << "Beginning Calibration process" << endl;
-	calibratedAccelData = fixAcceleration.fixTable(accelData);
-	calibratedMagnetData = fixMagnetometer.fixTable(magnetData);
+	dTable calibratedAccelData = fixAcceleration.fixTable(accelData);
+	dTable calibratedMagnetData = fixMagnetometer.fixTable(magnetData);
 	cout << "Calibration Completed" << endl;
 
+	//=====================================================================
 	//Create output file stream to save calibrated data
 	ofstream accelFile;
 	string afilename = args.get()[1]+"-accel.data";
-	string mfilename = args.get()[1]+"-magnet.data";
 	accelFile.open(afilename.c_str());
 
-	for(int i = 0; i<calibratedAccelData.size();i++){
-		accelFile << i/5000+1 << ",";
-		for(int j = 0;j<calibratedAccelData[i].size();j++){
+	for(int i = 0; i < calibratedAccelData.size();i++){
+		accelFile << i / 5000 + 1 << ",";
+		for(int j = 0;j < calibratedAccelData[i].size();j++){
 			accelFile << calibratedAccelData[i][j] << ",";
 		}
 		accelFile << endl;
@@ -105,10 +108,11 @@ int main(int argc, char** argv){
 	accelFile.close();
 
 	ofstream magnetFile;
+	string mfilename = args.get()[1]+"-magnet.data";
 	magnetFile.open(mfilename.c_str());
-	for(int i = 0; i<calibratedMagnetData.size();i++){
-		magnetFile << i/5000+1 << ",";
-		for(int j = 0;j<calibratedMagnetData[i].size();j++){
+	for(int i = 0; i < calibratedMagnetData.size();i++){
+		magnetFile << i / 5000 + 1 << ",";
+		for(int j = 0;j < calibratedMagnetData[i].size();j++){
 			magnetFile << calibratedMagnetData[i][j] << ",";
 		}
 		magnetFile << endl;
