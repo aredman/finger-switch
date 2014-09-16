@@ -26,6 +26,7 @@ int main(int argc, char** argv){
 	//print information
 	cout << "Extracting data from:       " << args.get()[1] << endl;
 	cout << "Accelerometer Calibrations: " << args.get()[2] << endl;
+	//=====================================================================
 
 
 	//Create an import object which pulls information from
@@ -40,9 +41,7 @@ int main(int argc, char** argv){
 	dTable magnetData = importedData.columnCut(rawData,1,3);
 	
 
-	//after getting a vector of the data (of accelerometer data) calibrate the vectors
-	//using the calibration files (requires another library to load the vectors)
-	//TODO This NEEDS to be turned into doubles. Otherwise this is extremely inaccurate
+	//=====================================================================
 	//Import the calibrations from a file
 	Import importCal;
 	dTable importedCalVector = importCal.tabulate(args.get()[2]);
@@ -82,6 +81,7 @@ int main(int argc, char** argv){
 	magnetCalVector.push_back(yMagnet);	//MagnetCalVector[1]
 	magnetCalVector.push_back(zMagnet);	//MagnetCalVector[2]
 
+	//=====================================================================
 	//Create sensor calibration objects for accelerometer and magnetometer
 	SensorCalibration fixAcceleration(accelCalVector);
 	SensorCalibration fixMagnetometer(magnetCalVector);
@@ -92,6 +92,7 @@ int main(int argc, char** argv){
 	dTable calibratedMagnetData = fixMagnetometer.fixTable(magnetData);
 	cout << "Calibration Completed" << endl;
 
+	//=====================================================================
 	//Create output file stream to save calibrated data
 	ofstream accelFile;
 	string afilename = args.get()[1]+"-accel.data";
