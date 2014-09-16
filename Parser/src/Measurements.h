@@ -3,29 +3,29 @@
 
 #include <vector>
 
-typedef std::vector< std::vector<int> > intTable;
+typedef std::vector< std::vector<double> > dTable;
 
 //A class made to store the data measurements in lists of tables for easier
 //handeling. The functions are simple set and get methods. The objects are
-//vectors containing intTables. Which are defined above as two vectors 
-//containing integers
+//vectors containing dTables. Which are defined above as two vectors 
+//containing double
 
 
 class RawMeasurementTables{
 	private:
-		std::vector<intTable> accelerometerData;
-		std::vector<intTable> magnetometerData;
+		std::vector<dTable> accelerometerData;
+		std::vector<dTable> magnetometerData;
 	public:
-		void setAccelerometerData(std::vector<intTable> AD){
+		void setAccelerometerData(std::vector<dTable> AD){
 			accelerometerData = AD;
 		}
-		void setMagnetometerData(std::vector<intTable> MD){
+		void setMagnetometerData(std::vector<dTable> MD){
 			magnetometerData = MD;
 		}
-		std::vector<intTable> getAccelerometerData(){
+		std::vector<dTable> getAccelerometerData(){
 			return accelerometerData;
 		}
-		std::vector<intTable> getMagnetometerData(){
+		std::vector<dTable> getMagnetometerData(){
 			return magnetometerData;
 		}
 };
