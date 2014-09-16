@@ -37,8 +37,8 @@ int main(int argc, char** argv){
 	dTable rawData = importedData.tabulate(args.get()[1]);
 
 	//Cut up rawData table into magnetometer and accelerometer tables
-	dTable accelData = importedData.columnCut(rawData,4,6);
-	dTable magnetData = importedData.columnCut(rawData,1,3);
+	dTable accelData = importedData.columnCut(rawData,1,3);
+	dTable magnetData = importedData.columnCut(rawData,4,6);
 	
 
 	//=====================================================================
