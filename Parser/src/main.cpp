@@ -57,8 +57,8 @@ int main(int argc, char** argv){
 	}
 
 	cout << "Putting data into the calibration vectors" << endl;
-		vector< Calibration > accelCalVector;
-		vector< Calibration > magnetCalVector;
+	vector< Calibration > accelCalVector;
+	vector< Calibration > magnetCalVector;
 
 	//Creates calibration objects with their respective calibrations
 	Calibration xAccel(importedCalVector[0][0],importedCalVector[0][1]);
