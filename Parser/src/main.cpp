@@ -28,15 +28,26 @@ int main(int argc, char** argv){
 
 
 	//with this information, import the data file
-	Import importedData;
+	//create five tables to hold data.
 	dTable rawData;
-	dTable calibratedData;
+	dTable accelData;
+	dTable magnetData;
+	dTable calibratedAccelData;
+	dTable calibratedMagnetData;
+	//Create an import object which pulls information from
+	//a csv and converts it two doubles
+	Import importedData;
+	//Load the imported data into the raw data object
 	rawData = importedData.tabulate(args.get()[1]);
+	//Cut up rawData table into magnetometer and accelerometer tables
+	accelData = importedData.columnCut(rawData,4,6);
+	magnetData = importedData.columnCut(rawData,1,3);
 	
 
 	//after getting a vector of the data (of accelerometer data) calibrate the vectors
 	//using the calibration files (requires another library to load the vectors)
 	//TODO This NEEDS to be turned into doubles. Otherwise this is extremely inaccurate
+	//Import the calibrations from a file
 	Import importCal;
 	dTable importedCalVector = importCal.tabulate(args.get()[2]);
 	if(importedCalVector.size() != 2){
@@ -48,19 +59,31 @@ int main(int argc, char** argv){
 		vector< Calibration > accelCalVector;
 		vector< Calibration > magnetCalVector;
 
-Calibration xAccel(importedCalVector[0][0],importedCalVector[0][1]);
-Calibration yAccel(importedCalVector[0][3],importedCalVector[0][4]);
-Calibration zAccel(importedCalVector[0][6],importedCalVector[0][7]);
-Calibration xMagnet(importedCalVector[1][0],importedCalVector[1][1]);
-Calibration yMagnet(importedCalVector[1][3],importedCalVector[1][4]);
-Calibration zMagnet(importedCalVector[1][6],importedCalVector[1][7]);
+	//Creates calibration objects with their respective calibrations
+	Calibration xAccel(importedCalVector[0][0],importedCalVector[0][1]);
+	Calibration yAccel(importedCalVector[0][3],importedCalVector[0][4]);
+	Calibration zAccel(importedCalVector[0][6],importedCalVector[0][7]);
+	Calibration xMagnet(importedCalVector[1][0],importedCalVector[1][1]);
+	Calibration yMagnet(importedCalVector[1][3],importedCalVector[1][4]);
+	Calibration zMagnet(importedCalVector[1][6],importedCalVector[1][7]);
 
-accelCalVector.push_back(xAccel);
-accelCalVector.push_back(yAccel);
-accelCalVector.push_back(zAccel);
-magnetCalVector.push_back(xMagnet);
-magnetCalVector.push_back(yMagnet);
-magnetCalVector.push_back(zMagnet);
+	//Load the calibration objects into vectors based on sensor and axis
+	//All accelerometer calibrations are in the same vector
+	//All magnetometer calibrations are in the same vector
+	//positions 0,1,2 are x,y,z respectively
+	accelCalVector.push_back(xAccel);	//AccelCalVector[0]
+	accelCalVector.push_back(yAccel);	//AccelCalVector[1]
+	accelCalVector.push_back(zAccel);	//AccelCalVector[2]
+	magnetCalVector.push_back(xMagnet);	//MagnetCalVector[0]
+	magnetCalVector.push_back(yMagnet);	//MagnetCalVector[1]
+	magnetCalVector.push_back(zMagnet);	//MagnetCalVector[2]
+
+	//Create sensor calibration objects for accelerometer and magnetometer
+	SensorCalibration fixAcceleration(accelCalVector);
+	SensorCalibration fixMagnetometer(magnetCalVector);
+
+	//Apply sensor calibration objects to tables
+
 
 	//==========================================================================================
 	//with the calibrated data, calculate the angle measurements, taking care to propagate error
