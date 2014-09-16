@@ -23,8 +23,11 @@ $(BINDIR)/AngleAnalyzerTest: $(SRCDIR)/AngleAnalyzerTest.cpp $(SRCDIR)/AngleAnal
 $(BINDIR)/ArgStringTest: $(SRCDIR)/ArgStringTest.cpp $(SRCDIR)/ArgString.h
 	g++ -o $(BINDIR)/ArgStringTest $(SRCDIR)/ArgStringTest.cpp
 
+$(BINDIR)/VectorMathTest: $(SRCDIR)/VectorMathTest.cpp $(SRCDIR)/VectorMath.h
+	g++ -o $(BINDIR)/VectorMathTest $(SRCDIR)/VectorMathTest.cpp
+
 #main program
-$(BINDIR)/Parser: $(BINDIR)/importTest $(BINDIR)/StatsTest $(BINDIR)/linearTest $(BINDIR)/AngleAnalyzerTest $(BINDIR)/ArgStringTest $(SRCDIR)/main.cpp
+$(BINDIR)/Parser: $(BINDIR)/importTest $(BINDIR)/StatsTest $(BINDIR)/linearTest $(BINDIR)/AngleAnalyzerTest $(BINDIR)/ArgStringTest $(BINDIR)/VectorMathTest $(SRCDIR)/main.cpp 
 	g++ -o $(BINDIR)/Parser $(SRCDIR)/main.cpp
 
 #testing
