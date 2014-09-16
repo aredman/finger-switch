@@ -96,12 +96,11 @@ int main(int argc, char** argv){
 	//Create output file stream to save calibrated data
 	ofstream accelFile;
 	string afilename = args.get()[1]+"-accel.data";
-	string mfilename = args.get()[1]+"-magnet.data";
 	accelFile.open(afilename.c_str());
 
-	for(int i = 0; i<calibratedAccelData.size();i++){
-		accelFile << i/5000+1 << ",";
-		for(int j = 0;j<calibratedAccelData[i].size();j++){
+	for(int i = 0; i < calibratedAccelData.size();i++){
+		accelFile << i / 5000 + 1 << ",";
+		for(int j = 0;j < calibratedAccelData[i].size();j++){
 			accelFile << calibratedAccelData[i][j] << ",";
 		}
 		accelFile << endl;
@@ -109,10 +108,11 @@ int main(int argc, char** argv){
 	accelFile.close();
 
 	ofstream magnetFile;
+	string mfilename = args.get()[1]+"-magnet.data";
 	magnetFile.open(mfilename.c_str());
-	for(int i = 0; i<calibratedMagnetData.size();i++){
-		magnetFile << i/5000+1 << ",";
-		for(int j = 0;j<calibratedMagnetData[i].size();j++){
+	for(int i = 0; i < calibratedMagnetData.size();i++){
+		magnetFile << i / 5000 + 1 << ",";
+		for(int j = 0;j < calibratedMagnetData[i].size();j++){
 			magnetFile << calibratedMagnetData[i][j] << ",";
 		}
 		magnetFile << endl;
