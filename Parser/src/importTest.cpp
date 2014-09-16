@@ -8,25 +8,25 @@
 using namespace std;
 
 int main(){
-	intTable table;
-	vector<intTable> A;
-	vector<intTable> M;
+	dTable table;
+	vector<dTable> A;
+	vector<dTable> M;
 	std::string filename = "test1";
 
 	Import data;
 	table = data.tabulate(filename);
 
 	RawMeasurementTables records;
-	records.setMagnetometerData(data.getMagnet(table,6));
-	records.setAccelerometerData(data.getAccel(table,6));
+	records.setMagnetometerData(data.getMagnet(table,5,6));
+	records.setAccelerometerData(data.getAccel(table,5,6));
 
 	A = records.getAccelerometerData();
 	M = records.getMagnetometerData();
 
-	for(int i = 0; i<M.size();i++){
-		for(int j = 0;j<M[i].size();j++){
-			for(int k = 0; k < M[i][j].size();k++){
-				cout << M[i][j][k];
+	for(int i = 0; i<A.size();i++){
+		for(int j = 0;j<A[i].size();j++){
+			for(int k = 0; k < A[i][j].size();k++){
+				cout << A[i][j][k];
 				cout << ",";
 			}
 			cout << endl;

@@ -27,23 +27,23 @@ class Import{
 			return inputVector;
 		}
 
-		//Takes a string and converts it into a vector of integers
+		//Takes a string and converts it into a vector of floats 
 		//Parses the data using getline based on semi-colons and 
-		//converts them from ascii to integers using atoi()
-		std::vector<int> parseLine(std::string inputLine){
-			std::vector<int> numberData;
+		//converts them from ascii to floats using atof()
+		std::vector<float> parseLine(std::string inputLine){
+			std::vector<float> numberData;
 			std::stringstream inputStream(inputLine);
 			std::string piece;
 			while(inputStream.eof()==0){
 				std::getline(inputStream,piece,';');
-				numberData.push_back(atoi(piece.c_str()));
+				numberData.push_back(atof(piece.c_str()));
 			}
 			return numberData;
 		}
 
-		//Takes a string of data and separates it into an intTable
-		intTable returnTable(std::vector<std::string> inputLine){
-			intTable final;
+		//Takes a string of data and separates it into an dTable
+		dTable returnTable(std::vector<std::string> inputLine){
+			dTable final;
 			for(int i = 0;i < inputLine.size();i++){
 				final.push_back(parseLine(inputLine[i]));
 			}
@@ -51,21 +51,21 @@ class Import{
 		}
 
 		//Takes a file name and opens a filestream to that data file
-		//Parses the semi-colon separated data into a intTable
-		intTable tabulate(std::string filename){
+		//Parses the semi-colon separated data into a dTable
+		dTable tabulate(std::string filename){
 			std::ifstream inputStream;
 			inputStream.open(filename.c_str());
 			std::vector<std::string> lineArray;
 			lineArray = addline(inputStream);
 
-			intTable dataArray;
+			dTable dataArray;
 			dataArray = returnTable(lineArray);
 			return dataArray;
 		}
 
 		//Cuts a big table into smaller tables based on row index numbers
-		intTable rowCut(intTable bigTable,int index){
-			intTable smallTable;
+		dTable rowCut(dTable bigTable,int index){
+			dTable smallTable;
 			for(int i = 0;i<bigTable.size();i++){
 					if(bigTable[i][0] == index){
 						smallTable.push_back(bigTable[i]);
@@ -75,8 +75,8 @@ class Import{
 		}
 
 		//Cuts a big table into smaller tables based on columns
-		intTable columnCut(intTable bigTable,int abound, int bbound){
-			intTable smallTable;
+		dTable columnCut(dTable bigTable,int abound, int bbound){
+			dTable smallTable;
 			for(int i = 0; i < bigTable.size();i++){
 				smallTable.resize(smallTable.size()+1);
 				for(int j = 0; j < bigTable[i].size();j++){
@@ -89,37 +89,37 @@ class Import{
 		}
 
 		//Cuts a table up based on row index and column boundaries
-		intTable tableCut(intTable bigTable,int index,int abound,int bbound){
-				intTable mediumTable;
-				intTable smallTable;
+		dTable tableCut(dTable bigTable,int index,int abound,int bbound){
+				dTable mediumTable;
+				dTable smallTable;
 
 				mediumTable = rowCut(bigTable,index);
 				smallTable = columnCut(mediumTable,abound,bbound);
 				return smallTable;
 		}
 
-		//Pulls accelerometer data out of an intTable
-		std::vector<intTable> getAccel(intTable bigTable,int rows){
-			std::vector<intTable> accelerometerData;
-			for(int i = 0; i<rows;i++){
+		//Pulls accelerometer data out of an dTable
+		std::vector<dTable> getAccel(dTable bigTable,int start,int end){
+			std::vector<dTable> accelerometerData;
+			for(int i = start; i < end;i++){
 				accelerometerData.push_back(tableCut(bigTable,i,1,3));
 			}
 			return accelerometerData;
 		}
 
-		//Pulls magnetometer data out of an intTable 
-		std::vector<intTable> getMagnet(intTable bigTable,int rows){
-			std::vector<intTable> magnetometerData;
-			for(int i = 0; i<rows;i++){
+		//Pulls magnetometer data out of an dTable 
+		std::vector<dTable> getMagnet(dTable bigTable,int start,int end){
+			std::vector<dTable> magnetometerData;
+			for(int i = start; i < end;i++){
 				magnetometerData.push_back(tableCut(bigTable,i,4,6));
 			}
 			return magnetometerData;
 		}
 
-		//"explodes" an intTable into multiple smaller intTables 
-		//and returns a vector of smaller intTables
-		std::vector<intTable> explode(intTable bigTable,int rows){
-			std::vector<intTable> array;
+		//"explodes" an dTable into multiple smaller dTables 
+		//and returns a vector of smaller dTables
+		std::vector<dTable> explode(dTable bigTable,int rows){
+			std::vector<dTable> array;
 			for(int i = 0; i<rows;i++){
 				array.push_back(tableCut(bigTable,i,1,3));
 				array.push_back(tableCut(bigTable,i,4,6));
