@@ -86,7 +86,7 @@ int main(int argc, char** argv){
 	//Apply sensor calibration objects to tables
 	cout << "Beginning Calibration process" << endl;
 	calibratedAccelData = fixAcceleration.fixTable(accelData);
-	calibratedMagnetData = fixAcceleration.fixTable(magnetData);
+	calibratedMagnetData = fixMagnetometer.fixTable(magnetData);
 	cout << "Calibration Completed" << endl;
 
 	//Create output file stream to save calibrated data
