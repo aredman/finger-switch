@@ -31,4 +31,5 @@ class VectPrinter {
 			count = 0;
 		}
 		void next(){index++;}
+		void flush(){count = 0;}
 };
