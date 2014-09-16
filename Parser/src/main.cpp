@@ -28,21 +28,16 @@ int main(int argc, char** argv){
 	cout << "Accelerometer Calibrations: " << args.get()[2] << endl;
 
 
-	//with this information, import the data file
-	//create five tables to hold data.
-	dTable rawData;
-	dTable accelData;
-	dTable magnetData;
-	dTable calibratedAccelData;
-	dTable calibratedMagnetData;
 	//Create an import object which pulls information from
 	//a csv and converts it two doubles
 	Import importedData;
+
 	//Load the imported data into the raw data object
-	rawData = importedData.tabulate(args.get()[1]);
+	dTable rawData = importedData.tabulate(args.get()[1]);
+
 	//Cut up rawData table into magnetometer and accelerometer tables
-	accelData = importedData.columnCut(rawData,4,6);
-	magnetData = importedData.columnCut(rawData,1,3);
+	dTable accelData = importedData.columnCut(rawData,4,6);
+	dTable magnetData = importedData.columnCut(rawData,1,3);
 	
 
 	//after getting a vector of the data (of accelerometer data) calibrate the vectors
@@ -93,8 +88,8 @@ int main(int argc, char** argv){
 
 	//Apply sensor calibration objects to tables
 	cout << "Beginning Calibration process" << endl;
-	calibratedAccelData = fixAcceleration.fixTable(accelData);
-	calibratedMagnetData = fixMagnetometer.fixTable(magnetData);
+	dTable calibratedAccelData = fixAcceleration.fixTable(accelData);
+	dTable calibratedMagnetData = fixMagnetometer.fixTable(magnetData);
 	cout << "Calibration Completed" << endl;
 
 	//Create output file stream to save calibrated data
