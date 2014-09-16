@@ -36,16 +36,27 @@ int main(int argc, char** argv){
 	//using the calibration files (requires another library to load the vectors)
 	//TODO This NEEDS to be turned into doubles. Otherwise this is extremely inaccurate
 	Import importCal;
-	vector< vector<int> > importedCalVector = importCal.tabulate(args.get()[2]);
+	vector< vector<double> > importedCalVector = importCal.tabulate(args.get()[2]);
 	if(importedCalVector.size() != 2){
 		cout << "Wrong vector size" << endl;
 		exit(2);
 	}
 
 	cout << "Putting data into the calibration vectors" << endl;
-	vector< Calibration< Measurement<int> > > accelCalVector;
-	vector< Calibration< Measurement<int> > > magnetCalVector;
-	for(int i = 0; i < importedCalVector.size(); i++){
+	for(int i = 0; i<importedCalVector.size();i++){
+		for(int j = 0;j<importedCalVector[i].size();j++){
+				cout << importedCalVector[i][j];
+				cout << ",";
+			//for(int k = 0; k < importedCalVector[i][j].size();k++){
+			//	cout << importedCalVector[i][j][k];
+			//}
+		}
+		cout << "------" << endl;
+		vector< Calibration<double> > accelCalVector;
+		vector< Calibration<double> > magnetCalVector;
+		for(int i = 0; i < importedCalVector.size(); i++){
+
+		}
 
 	}
 	
@@ -54,8 +65,8 @@ int main(int argc, char** argv){
 	//==========================================================================================
 	//with the calibrated data, calculate the angle measurements, taking care to propagate error
 	//vector of calibrations
-	//vector< Measurement<int> > accelCals;
-	//vector< Measurement<int> > magnetCals;
+	//vector< Measurement<double> > accelCals;
+	//vector< Measurement<double> > magnetCals;
 
 	//calibrate the magnetometer data
 	//SensorCalibration accelSensorCal(calibrations);
