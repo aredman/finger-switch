@@ -29,38 +29,38 @@ int main(int argc, char** argv){
 
 	//with this information, import the data file
 	Import importedData;
-	importedData.tabulate(args.get()[1]);
+	dTable rawData;
+	dTable calibratedData;
+	rawData = importedData.tabulate(args.get()[1]);
 	
 
 	//after getting a vector of the data (of accelerometer data) calibrate the vectors
 	//using the calibration files (requires another library to load the vectors)
 	//TODO This NEEDS to be turned into doubles. Otherwise this is extremely inaccurate
 	Import importCal;
-	vector< vector<double> > importedCalVector = importCal.tabulate(args.get()[2]);
+	dTable importedCalVector = importCal.tabulate(args.get()[2]);
 	if(importedCalVector.size() != 2){
 		cout << "Wrong vector size" << endl;
 		exit(2);
 	}
 
 	cout << "Putting data into the calibration vectors" << endl;
-	for(int i = 0; i<importedCalVector.size();i++){
-		for(int j = 0;j<importedCalVector[i].size();j++){
-				cout << importedCalVector[i][j];
-				cout << ",";
-			//for(int k = 0; k < importedCalVector[i][j].size();k++){
-			//	cout << importedCalVector[i][j][k];
-			//}
-		}
-		cout << "------" << endl;
-		vector< Calibration<double> > accelCalVector;
-		vector< Calibration<double> > magnetCalVector;
-		for(int i = 0; i < importedCalVector.size(); i++){
+		vector< Calibration > accelCalVector;
+		vector< Calibration > magnetCalVector;
 
-		}
+Calibration xAccel(importedCalVector[0][0],importedCalVector[0][1]);
+Calibration yAccel(importedCalVector[0][3],importedCalVector[0][4]);
+Calibration zAccel(importedCalVector[0][6],importedCalVector[0][7]);
+Calibration xMagnet(importedCalVector[1][0],importedCalVector[1][1]);
+Calibration yMagnet(importedCalVector[1][3],importedCalVector[1][4]);
+Calibration zMagnet(importedCalVector[1][6],importedCalVector[1][7]);
 
-	}
-	
-
+accelCalVector.push_back(xAccel);
+accelCalVector.push_back(yAccel);
+accelCalVector.push_back(zAccel);
+magnetCalVector.push_back(xMagnet);
+magnetCalVector.push_back(yMagnet);
+magnetCalVector.push_back(zMagnet);
 
 	//==========================================================================================
 	//with the calibrated data, calculate the angle measurements, taking care to propagate error
