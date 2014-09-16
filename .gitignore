@@ -1,3 +1,12 @@
 *.swp
 *.gch
 /Parser/bin
+/Data/Test/test1
+/Data/Test/test1index
+/Data/Test/test2
+/Data/Test/Test3
+/Data/Test/Test4
+/.ignore
+/Parser/src/a.out
+/Parser/src/test1
+/Parser/src/split.cpp
