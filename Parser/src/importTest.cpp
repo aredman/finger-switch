@@ -18,7 +18,7 @@ int main(){
 
 	RawMeasurementTables records;
 	records.setMagnetometerData(data.getMagnet(table,5,6));
-	records.setAccelerometerData(data.getAccel(table,5,6));
+	records.setAccelerometerData(data.getAccel(table,5,7));
 
 	A = records.getAccelerometerData();
 	M = records.getMagnetometerData();

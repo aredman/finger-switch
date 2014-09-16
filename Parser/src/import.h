@@ -27,11 +27,11 @@ class Import{
 			return inputVector;
 		}
 
-		//Takes a string and converts it into a vector of floats 
+		//Takes a string and converts it into a vector of doubles 
 		//Parses the data using getline based on semi-colons and 
-		//converts them from ascii to floats using atof()
-		std::vector<float> parseLine(std::string inputLine){
-			std::vector<float> numberData;
+		//converts them from ascii to doubles using atof()
+		std::vector<double> parseLine(std::string inputLine){
+			std::vector<double> numberData;
 			std::stringstream inputStream(inputLine);
 			std::string piece;
 			while(inputStream.eof()==0){

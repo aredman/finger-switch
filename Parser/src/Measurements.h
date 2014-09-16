@@ -3,12 +3,12 @@
 
 #include <vector>
 
-typedef std::vector< std::vector<float> > dTable;
+typedef std::vector< std::vector<double> > dTable;
 
 //A class made to store the data measurements in lists of tables for easier
 //handeling. The functions are simple set and get methods. The objects are
 //vectors containing dTables. Which are defined above as two vectors 
-//containing float
+//containing double
 
 
 class RawMeasurementTables{
