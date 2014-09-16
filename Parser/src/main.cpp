@@ -119,7 +119,6 @@ int main(int argc, char** argv){
 	accelFile.open(afilename.c_str());
 
 	for(int i = 0; i < calibratedAccelDataVector.size();i++){
-		accelFile << i + 1 << "==Table Break==" << endl;
 		for(int j = 0;j < calibratedAccelDataVector[i].size();j++){
 			accelFile << i + 1 << ",";
 			for(int k = 0; k < calibratedAccelDataVector[i][j].size();k++){
@@ -134,7 +133,6 @@ int main(int argc, char** argv){
 	string mfilename = args.get()[1]+"-magnet.data";
 	magnetFile.open(mfilename.c_str());
 	for(int i = 0; i < calibratedMagnetDataVector.size();i++){
-		magnetFile << i + 1 << "==Table Break==" << endl;
 		for(int j = 0;j < calibratedMagnetDataVector[i].size();j++){
 			magnetFile << i + 1 << ",";
 			for(int k = 0; k < calibratedMagnetDataVector[i][j].size();k++){
