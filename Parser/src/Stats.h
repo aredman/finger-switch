@@ -28,6 +28,19 @@ class Stats {
 			}
 			return output;
 		}
+		std::vector<double> vectorAccuracy(std::vector< std::vector<double> > input){
+			//create a new vector to hold the means
+			std::vector<double> output;
+			for(int i = 0; i < input[0].size(); i++){
+				//make a vector of the input size
+				std::vector<double> tmp;
+				for(int j = 0; j < input.size(); j++){
+					tmp.push_back(input[j][i]);
+				}
+				output.push_back(accuracy(tmp));
+			}
+			return output;
+		}
 		double variance(std::vector<double> input){
 			//variance is the sum of the squares, divided by the DOF, subtracting the mean
 			int size = input.size();

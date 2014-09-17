@@ -157,17 +157,26 @@ int main(int argc, char** argv){
 	//first, get a table of the means
 	
 	cout << "Getting a table of the vector means" << endl;
-	vector< vector<double> > accelMeans, magnetMeans;
+	vector< vector<double> > accelMeans, magnetMeans, accelUn, magnetUn;
 	accelMeans.push_back(vector<double>(3));
 	magnetMeans.push_back(vector<double>(3));
+	accelUn.push_back(vector<double>(3));
+	magnetUn.push_back(vector<double>(3));
 	for(int i = 0; i < calibratedMagnetDataVector.size(); i++){
 		accelMeans.push_back(Stats().vectorMean(calibratedAccelDataVector[i]));
 		magnetMeans.push_back(Stats().vectorMean(calibratedMagnetDataVector[i]));
+		accelUn.push_back(Stats().vectorAccuracy(calibratedAccelDataVector[i]));
+		magnetUn.push_back(Stats().vectorAccuracy(calibratedMagnetDataVector[i]));
 	}
 	cout << "Accelerometer" << endl;
 	printVector(accelMeans);
 	cout << "Magnetometer" << endl;
 	printVector(magnetMeans);
+
+	cout << "Accelerometer Uncertainty" << endl;
+	printVector(accelUn);
+	cout << "Magnetometer Uncertainty" << endl;
+	printVector(magnetUn);
 
 	cout << "Getting the perpendicular component of the magnetomter data" << endl;
 	vector< vector<double> > magnetMeansPerp;
@@ -225,6 +234,7 @@ int main(int argc, char** argv){
 
 	cout << "theta" << endl;
 	printVector(theta);
+	cout << "phi" << endl;
 	printVector(phi);
 
 
