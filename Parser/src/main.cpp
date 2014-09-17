@@ -34,13 +34,16 @@ int main(int argc, char** argv){
 	Import importedData;
 
 	//Load the imported data into the raw data object
+	cout << "Importing data" << endl;
 	dTable rawData = importedData.tabulate(args.get()[1]);
 
 	//Cut up rawData table into magnetometer and accelerometer tables
+	cout << "Parsing raw data" << endl;
 	dTable accelData = importedData.columnCut(rawData,1,3);
 	dTable magnetData = importedData.columnCut(rawData,4,6);
 
 	//Cut up rawData table into magnetometer and accelerometer tables by index
+	cout << "Cutting by index" << endl;
 	vector<dTable> accelDataVector;
 	for(int i = 1; i < 22;i++){
 		accelDataVector.push_back(importedData.tableCut(rawData,i,1,3));
@@ -97,7 +100,9 @@ int main(int argc, char** argv){
 
 	//Apply sensor calibration objects to tables
 	cout << "Beginning Calibration process" << endl;
+	cout << "Accelerometer" << endl;
 	dTable calibratedAccelData = fixAcceleration.fixTable(accelData);
+	cout << "Magnetometer" << endl;
 	dTable calibratedMagnetData = fixMagnetometer.fixTable(magnetData);
 	cout << "Calibration Completed" << endl;
 
@@ -114,8 +119,10 @@ int main(int argc, char** argv){
 
 	//=====================================================================
 	//Create output file stream to save calibrated data
+	cout << "Outputing calibrated data to a file" << endl;
 	ofstream accelFile;
 	string afilename = args.get()[1]+"-accel.data";
+	cout << afilename << endl;
 	accelFile.open(afilename.c_str());
 
 	for(int i = 0; i < calibratedAccelDataVector.size();i++){
@@ -131,6 +138,7 @@ int main(int argc, char** argv){
 
 	ofstream magnetFile;
 	string mfilename = args.get()[1]+"-magnet.data";
+	cout << mfilename << endl;
 	magnetFile.open(mfilename.c_str());
 	for(int i = 0; i < calibratedMagnetDataVector.size();i++){
 		for(int j = 0;j < calibratedMagnetDataVector[i].size();j++){
