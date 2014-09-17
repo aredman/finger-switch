@@ -121,6 +121,13 @@ int main(int argc, char** argv){
 
 	//==========================================================================================
 	//This is a basic implementation of the algorithm
+	//first, get a table of the means
+	
+	vector<double> accelMeans, magnetMeans;
+	accelMeans = Stats().vectorMean(calibratedAccelData);
+	magnetMeans = Stats().vectorMean(calibratedMagnetData);
+	for(int i = 0; i < 3; i++) cout << accelMeans[i] << ';';
+	cout << endl;
 
 	
 }
