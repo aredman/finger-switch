@@ -33,8 +33,11 @@ int main(){
 	}
 
 	vector<double> vectorTestMean = Stats().vectorMean(vectorTest);
+	vector<double> vectorTestAccu = Stats().vectorAccuracy(vectorTest);
 
 	for(int i = 0; i < vectorTestMean.size(); i++) cout << vectorTestMean[i] << ';';
+	cout << endl;
+	for(int i = 0; i < vectorTestMean.size(); i++) cout << vectorTestAccu[i] << ';';
 	cout << endl;
 	
 }
