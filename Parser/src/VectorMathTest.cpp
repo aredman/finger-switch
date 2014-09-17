@@ -43,4 +43,29 @@ int main(){
 
 	double orientDouble = orientation(orientVector);
 	cout << orientDouble * 180 / 3.14159 << endl;
+
+	//now we try a bunch of dummy variables to see if it works correctly
+	vector< vector<double> > dummyVectors;
+	vector<double> v1, v2, v3, v4, v5, v6, v7, v8;
+	v1.push_back(0); v1.push_back(1);
+	v2.push_back(1); v2.push_back(1);
+	v3.push_back(1); v3.push_back(0);
+	v4.push_back(1); v4.push_back(-1);
+	v5.push_back(0); v5.push_back(-1);
+	v6.push_back(-1); v6.push_back(-1);
+	v7.push_back(-1); v7.push_back(0);
+	v8.push_back(-1); v8.push_back(1);
+
+	dummyVectors.push_back(v1);
+	dummyVectors.push_back(v2);
+	dummyVectors.push_back(v3);
+	dummyVectors.push_back(v4);
+	dummyVectors.push_back(v5);
+	dummyVectors.push_back(v6);
+	dummyVectors.push_back(v7);
+	dummyVectors.push_back(v8);
+
+	for(int i = 0; i < dummyVectors.size(); i++){
+		cout << orientation180(dummyVectors[i]) << endl;
+	}
 }

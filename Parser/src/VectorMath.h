@@ -52,15 +52,14 @@ double orientation(Type& input){
 		std::cout << "Can't get orientation of vector with size " << input.size() << std::endl;
 		return 0;
 	}
-	return atan2(input[0], input[1]);
+	double output = atan2(input[0], input[1]);
+	while(output < 0) output += 8*atan(1);
+	return output;
 }
 
 template <class Type>
-double orientation180(Type& input){
-	Type output = orientation(input);
-	for(int i = 0; i < output.size(); i++){
-		output[i] = static_cast<int>(output[i] * 180 / 3.14159);
-	}
+int orientation180(Type& input){
+	int output = orientation(input) * 180 / 3.14159;
 	return output;
 }
 
