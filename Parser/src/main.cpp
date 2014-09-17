@@ -7,6 +7,7 @@
 #include "Measurements.h"
 #include "Stats.h"
 #include "ArgString.h"
+#include "VectorMath.h"
 
 #include <vector>
 #include <fstream>
@@ -155,11 +156,12 @@ int main(int argc, char** argv){
 	//This is a basic implementation of the algorithm
 	//first, get a table of the means
 	
-	vector<double> accelMeans, magnetMeans;
-	accelMeans = Stats().vectorMean(calibratedAccelData);
-	magnetMeans = Stats().vectorMean(calibratedMagnetData);
-	for(int i = 0; i < 3; i++) cout << accelMeans[i] << ';';
-	cout << endl;
+	cout << "Getting a table of the vector means" << endl;
+	vector< vector<double> > accelMeans, magnetMeans;
+	for(int i = 0; i < calibratedMagnetDataVector.size(); i++){
+		accelMeans.push_back(Stats().vectorMean(calibratedAccelDataVector[i]));
+		magnetMeans.push_back(Stats().vectorMean(calibratedMagnetDataVector[i]));
+	}
 
 	
 }
