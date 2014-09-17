@@ -162,12 +162,18 @@ int main(int argc, char** argv){
 		accelMeans.push_back(Stats().vectorMean(calibratedAccelDataVector[i]));
 		magnetMeans.push_back(Stats().vectorMean(calibratedMagnetDataVector[i]));
 	}
+	cout << "Accelerometer" << endl;
+	printVector(accelMeans);
+	cout << "Magnetometer" << endl;
+	printVector(magnetMeans);
 
 	cout << "Getting the perpendicular component of the magnetomter data" << endl;
 	vector< vector<double> > magnetMeansPerp;
 	for(int i = 0; i < accelMeans.size(); i++){
 		magnetMeansPerp.push_back(rejection(magnetMeans[i], accelMeans[i]));
 	}
+	cout << "Magnetometer Rejection" << endl;
+	printVector(magnetMeansPerp);
 
 	//main path:
 	//	-1
@@ -195,5 +201,26 @@ int main(int argc, char** argv){
 	//make a table of angles and helpers using the calibrated magnetmeter data
 	//theta refers to the angle of the paths on the edge, and phi refers to the helper angles
 	vector<double> theta, phi;
-	
+	theta.push_back(orientation(magnetMeansPerp[1]));
+	theta.push_back(orientation(magnetMeansPerp[2]));
+	theta.push_back(orientation(magnetMeansPerp[5]));
+	theta.push_back(orientation(magnetMeansPerp[7]));
+	theta.push_back(orientation(magnetMeansPerp[9]));
+	theta.push_back(orientation(magnetMeansPerp[11]));
+	theta.push_back(orientation(magnetMeansPerp[13]));
+	theta.push_back(orientation(magnetMeansPerp[16]));
+	theta.push_back(orientation(magnetMeansPerp[19]));
+
+	phi.push_back(orientation(magnetMeansPerp[4]));
+	phi.push_back(orientation(magnetMeansPerp[3]));
+	phi.push_back(orientation(magnetMeansPerp[6]));
+	phi.push_back(orientation(magnetMeansPerp[8]));
+	phi.push_back(orientation(magnetMeansPerp[10]));
+	phi.push_back(orientation(magnetMeansPerp[14]));
+	phi.push_back(orientation(magnetMeansPerp[16]));
+	phi.push_back(orientation(magnetMeansPerp[18]));
+
+	cout << "theta" << endl;
+	printVector(theta);
+	printVector(phi);
 }
