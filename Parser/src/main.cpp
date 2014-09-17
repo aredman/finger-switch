@@ -238,10 +238,10 @@ int main(int argc, char** argv){
 	printVector(phi);
 
 	cout << "edge orientation" << endl;
-	vector<double> thetaDeg = vectorMultiplication(theta, 180/3.14159);
+	vector<int> thetaDeg = vectorMultiplication(theta, 180/3.14159);
 	printVector(thetaDeg);
 	cout << "helper orientation" << endl;
-	vector<double> phiDeg = vectorMultiplication(phi, 180/3.14159);
+	vector<int> phiDeg = vectorMultiplication(phi, 180/3.14159);
 	printVector(phiDeg);
 
 

@@ -59,28 +59,30 @@ template <class Type>
 double orientation180(Type& input){
 	Type output = orientation(input);
 	for(int i = 0; i < output.size(); i++){
-		output[i] = output[i] * 180 / 3.14159;
+		output[i] = static_cast<int>(output[i] * 180 / 3.14159);
 	}
 	return output;
 }
 
 template <class Type>
-Type vectorMultiplication(Type& input, double factor){
-	Type output = input;
+std::vector<int> vectorMultiplication(Type& input, double factor){
+	std::vector<int> output;
 	for(int i = 0; i < input.size(); i++){
-		output[i] = input[i] * factor;
+		output.push_back(input[i] * factor);
 	}
 	return output;
 }
 
-void printVector(std::vector<double>& input){
+template <class Type>
+void printVector(std::vector<Type>& input){
 	for(int i = 0; i < input.size(); i++){
 		std::cout << input[i] << ';';
 	}
 	std::cout << std::endl;
 }
 
-void printVector(std::vector< std::vector<double> >& input){
+template <class Type>
+void printVector(std::vector< std::vector<Type> >& input){
 	for(int i = 0; i < input.size(); i++){
 		for(int j = 0; j < input[i].size(); j++){
 			std::cout << input[i][j] << ';';
