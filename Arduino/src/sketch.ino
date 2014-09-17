@@ -11,6 +11,7 @@
 bool block(){
 	if(Serial.available() == 0) return true;
 	if(Serial.peek() == 'c') return true;
+	if(Serial.peek() == 'o') orientation();
 	Serial.read();
 	return false;
 }
@@ -55,6 +56,23 @@ void calibration(){
 		while(roll >= 360) roll -= 360;
 		while(pitch >= 360) pitch -= 360;
 		while(yaw >= 360) yaw -= 360;
+	}
+}
+
+void orientation(){
+	Magnet magnetometer;
+	double xAve = 0;
+	double yAve = 0;
+	for(;;){
+		Vector<int, 3> reading = magnetometer.read().getData();
+
+		double x = (reading[0] + 144.824) / 10.8646;
+		double y = (reading[1] + 164.896) / 10.5656;
+
+		xAve += (x - xAve) / 100;
+		yAve += (y - yAve) / 100;
+
+		Serial << atan2(xAve, yAve) * 180 / 3.14159 << endl;
 	}
 }
 
