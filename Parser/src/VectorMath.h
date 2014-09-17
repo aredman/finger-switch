@@ -52,7 +52,25 @@ double orientation(Type& input){
 		std::cout << "Can't get orientation of vector with size " << input.size() << std::endl;
 		return 0;
 	}
-	return atan(input[0] / input[1]);
+	return atan2(input[0], input[1]);
+}
+
+template <class Type>
+double orientation180(Type& input){
+	Type output = orientation(input);
+	for(int i = 0; i < output.size(); i++){
+		output[i] = output[i] * 180 / 3.14159;
+	}
+	return output;
+}
+
+template <class Type>
+Type vectorMultiplication(Type& input, double factor){
+	Type output = input;
+	for(int i = 0; i < input.size(); i++){
+		output[i] = input[i] * factor;
+	}
+	return output;
 }
 
 void printVector(std::vector<double>& input){
