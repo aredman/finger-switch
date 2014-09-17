@@ -223,4 +223,14 @@ int main(int argc, char** argv){
 	cout << "theta" << endl;
 	printVector(theta);
 	printVector(phi);
+
+
+	cout << "Iteratively calculating the edges" << endl;
+	vector<double> edge;
+	edge.push_back(1);
+	for(int n = 1; n < 10; n++){
+		edge.push_back((sin(abs(theta[n-1] - phi[n-1])) / sin((theta[n] - phi[n-1]))) * edge[n-1]);
+	}
+
+	printVector(edge);
 }
