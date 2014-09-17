@@ -158,6 +158,8 @@ int main(int argc, char** argv){
 	
 	cout << "Getting a table of the vector means" << endl;
 	vector< vector<double> > accelMeans, magnetMeans;
+	accelMeans.push_back(vector<double>(3));
+	magnetMeans.push_back(vector<double>(3));
 	for(int i = 0; i < calibratedMagnetDataVector.size(); i++){
 		accelMeans.push_back(Stats().vectorMean(calibratedAccelDataVector[i]));
 		magnetMeans.push_back(Stats().vectorMean(calibratedMagnetDataVector[i]));
@@ -216,6 +218,7 @@ int main(int argc, char** argv){
 	phi.push_back(orientation(magnetMeansPerp[6]));
 	phi.push_back(orientation(magnetMeansPerp[8]));
 	phi.push_back(orientation(magnetMeansPerp[10]));
+	phi.push_back(orientation(magnetMeansPerp[12]));
 	phi.push_back(orientation(magnetMeansPerp[14]));
 	phi.push_back(orientation(magnetMeansPerp[16]));
 	phi.push_back(orientation(magnetMeansPerp[18]));
