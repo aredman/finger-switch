@@ -2,6 +2,7 @@
 
 #include <valarray>
 #include <iostream>
+#include <math.h>
 
 template <class Type>
 double dotProduct(Type& v1, Type& v2){
@@ -42,4 +43,13 @@ Type rejection(Type& v1, Type& v2){
 		returnVector[i] = v1[i] - projectedVector[i];
 	}
 	return returnVector;
+}
+
+template <class Type>
+double orientation(Type& input){
+	if(input.size() != 2){
+		std::cout << "Can't get orientation of vector with size " << input.size() << std::endl;
+		return 0;
+	}
+	return atan(input[0] / input[1]);
 }

@@ -192,4 +192,8 @@ int main(int argc, char** argv){
 	//	16
 	//	18
 	
+	//make a table of angles and helpers using the calibrated magnetmeter data
+	//theta refers to the angle of the paths on the edge, and phi refers to the helper angles
+	vector<double> theta, phi;
+	
 }

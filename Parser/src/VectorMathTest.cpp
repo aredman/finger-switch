@@ -35,4 +35,12 @@ int main(){
 	vector<double> rejected = rejection(first, second);
 	for(int i = 0; i < 3; i++) cout << rejected[i] << ';';
 	cout << endl;
+
+	//return the orientation of a vector
+	vector<double> orientVector;
+	orientVector.push_back(123);
+	orientVector.push_back(0);
+
+	double orientDouble = orientation(orientVector);
+	cout << orientDouble * 180 / 3.14159 << endl;
 }
