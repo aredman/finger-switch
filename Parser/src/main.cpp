@@ -170,7 +170,7 @@ int main(int argc, char** argv){
 	}
 
 	//main path:
-	//	1
+	//	-1
 	//	2
 	//	5
 	//	7
@@ -182,7 +182,7 @@ int main(int argc, char** argv){
 	//	19
 
 	//helpers:
-	//	4
+	//	-4
 	//	3
 	//	6
 	//	8
