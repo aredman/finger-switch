@@ -227,6 +227,7 @@ int main(int argc, char** argv){
 	theta.push_back(orientation(magnetMeans[11]));
 	theta.push_back(orientation(magnetMeans[13]));
 	theta.push_back(orientation(magnetMeans[15]));
+	theta.push_back(orientation(magnetMeans[17]));
 	theta.push_back(orientation(magnetMeans[19]));
 
 	phi.push_back(orientation(magnetMeans[4]) - 4 * atan(1));
