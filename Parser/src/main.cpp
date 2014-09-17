@@ -201,7 +201,7 @@ int main(int argc, char** argv){
 	//	9
 	//	11
 	//	13
-	//	16
+	//	15
 	//	17
 	//	19
 
@@ -219,25 +219,25 @@ int main(int argc, char** argv){
 	//make a table of angles and helpers using the calibrated magnetmeter data
 	//theta refers to the angle of the paths on the edge, and phi refers to the helper angles
 	vector<double> theta, phi;
-	theta.push_back(orientation(magnetMeansPerp[1]));
-	theta.push_back(orientation(magnetMeansPerp[2]));
-	theta.push_back(orientation(magnetMeansPerp[5]));
-	theta.push_back(orientation(magnetMeansPerp[7]));
-	theta.push_back(orientation(magnetMeansPerp[9]));
-	theta.push_back(orientation(magnetMeansPerp[11]));
-	theta.push_back(orientation(magnetMeansPerp[13]));
-	theta.push_back(orientation(magnetMeansPerp[16]));
-	theta.push_back(orientation(magnetMeansPerp[19]));
+	theta.push_back(orientation(magnetMeans[1]) - 4 * atan(1));
+	theta.push_back(orientation(magnetMeans[2]));
+	theta.push_back(orientation(magnetMeans[5]));
+	theta.push_back(orientation(magnetMeans[7]));
+	theta.push_back(orientation(magnetMeans[9]));
+	theta.push_back(orientation(magnetMeans[11]));
+	theta.push_back(orientation(magnetMeans[13]));
+	theta.push_back(orientation(magnetMeans[15]));
+	theta.push_back(orientation(magnetMeans[19]));
 
-	phi.push_back(orientation(magnetMeansPerp[4]));
-	phi.push_back(orientation(magnetMeansPerp[3]));
-	phi.push_back(orientation(magnetMeansPerp[6]));
-	phi.push_back(orientation(magnetMeansPerp[8]));
-	phi.push_back(orientation(magnetMeansPerp[10]));
-	phi.push_back(orientation(magnetMeansPerp[12]));
-	phi.push_back(orientation(magnetMeansPerp[14]));
-	phi.push_back(orientation(magnetMeansPerp[16]));
-	phi.push_back(orientation(magnetMeansPerp[18]));
+	phi.push_back(orientation(magnetMeans[4]) - 4 * atan(1));
+	phi.push_back(orientation(magnetMeans[3]));
+	phi.push_back(orientation(magnetMeans[6]));
+	phi.push_back(orientation(magnetMeans[8]));
+	phi.push_back(orientation(magnetMeans[10]));
+	phi.push_back(orientation(magnetMeans[12]));
+	phi.push_back(orientation(magnetMeans[14]));
+	phi.push_back(orientation(magnetMeans[16]));
+	phi.push_back(orientation(magnetMeans[18]));
 
 	cout << "theta" << endl;
 	printVector(theta);
