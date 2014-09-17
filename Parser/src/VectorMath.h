@@ -3,6 +3,7 @@
 #include <valarray>
 #include <iostream>
 #include <math.h>
+#include <vector>
 
 template <class Type>
 double dotProduct(Type& v1, Type& v2){
@@ -47,9 +48,25 @@ Type rejection(Type& v1, Type& v2){
 
 template <class Type>
 double orientation(Type& input){
-	if(input.size() != 2){
+	if(input.size() < 2){
 		std::cout << "Can't get orientation of vector with size " << input.size() << std::endl;
 		return 0;
 	}
 	return atan(input[0] / input[1]);
+}
+
+void printVector(std::vector<double>& input){
+	for(int i = 0; i < input.size(); i++){
+		std::cout << input[i] << ';';
+	}
+	std::cout << std::endl;
+}
+
+void printVector(std::vector< std::vector<double> >& input){
+	for(int i = 0; i < input.size(); i++){
+		for(int j = 0; j < input[i].size(); j++){
+			std::cout << input[i][j] << ';';
+		}
+		std::cout << std::endl;
+	}
 }
