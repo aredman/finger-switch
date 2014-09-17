@@ -168,5 +168,28 @@ int main(int argc, char** argv){
 	for(int i = 0; i < accelMeans.size(); i++){
 		magnetMeansPerp.push_back(rejection(magnetMeans[i], accelMeans[i]));
 	}
+
+	//main path:
+	//	1
+	//	2
+	//	5
+	//	7
+	//	9
+	//	11
+	//	13
+	//	16
+	//	17
+	//	19
+
+	//helpers:
+	//	4
+	//	3
+	//	6
+	//	8
+	//	10
+	//	12
+	//	14
+	//	16
+	//	18
 	
 }
