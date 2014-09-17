@@ -53,7 +53,6 @@ double orientation(Type& input){
 		return 0;
 	}
 	double output = atan2(input[0], input[1]);
-	while(output < 0) output += 8*atan(1);
 	return output;
 }
 
