@@ -163,5 +163,10 @@ int main(int argc, char** argv){
 		magnetMeans.push_back(Stats().vectorMean(calibratedMagnetDataVector[i]));
 	}
 
+	cout << "Getting the perpendicular component of the magnetomter data" << endl;
+	vector< vector<double> > magnetMeansPerp;
+	for(int i = 0; i < accelMeans.size(); i++){
+		magnetMeansPerp.push_back(rejection(magnetMeans[i], accelMeans[i]));
+	}
 	
 }
