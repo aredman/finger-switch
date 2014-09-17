@@ -64,7 +64,7 @@ class Import{
 		}
 
 		//Cuts a big table into smaller tables based on row index numbers
-		dTable rowCut(dTable bigTable,int index){
+		dTable rowCut(dTable& bigTable,int index){
 			dTable smallTable;
 			for(int i = 0;i<bigTable.size();i++){
 					if(bigTable[i][0] == index){
@@ -75,7 +75,7 @@ class Import{
 		}
 
 		//Cuts a big table into smaller tables based on columns
-		dTable columnCut(dTable bigTable,int abound, int bbound){
+		dTable columnCut(dTable& bigTable,int abound, int bbound){
 			dTable smallTable;
 			for(int i = 0; i < bigTable.size();i++){
 				smallTable.resize(smallTable.size()+1);
@@ -89,7 +89,7 @@ class Import{
 		}
 
 		//Cuts a table up based on row index and column boundaries
-		dTable tableCut(dTable bigTable,int index,int abound,int bbound){
+		dTable tableCut(dTable& bigTable,int index,int abound,int bbound){
 				dTable mediumTable;
 				dTable smallTable;
 
