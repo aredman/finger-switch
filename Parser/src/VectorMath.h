@@ -4,7 +4,7 @@
 #include <iostream>
 
 template <class Type>
-double dotProduct(Type v1, Type v2){
+double dotProduct(Type& v1, Type& v2){
 	if(v1.size() != v2.size()){
 		std::cout << "Vectors have different sizes" << std::endl;
 		return 0;
@@ -17,7 +17,7 @@ double dotProduct(Type v1, Type v2){
 }
 
 template <class Type>
-Type projection(Type v1, Type v2){
+Type projection(Type& v1, Type& v2){
 	if(v1.size() != v2.size()){
 		std::cout << "Vectors have different sizes" << std::endl;
 		return Type(3);
@@ -31,7 +31,7 @@ Type projection(Type v1, Type v2){
 }
 
 template <class Type>
-Type rejection(Type v1, Type v2){
+Type rejection(Type& v1, Type& v2){
 	if(v1.size() != v2.size()){
 		std::cout << "Vectors have different sizes" << std::endl;
 		return Type(3);
