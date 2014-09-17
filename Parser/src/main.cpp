@@ -186,6 +186,13 @@ int main(int argc, char** argv){
 	cout << "Magnetometer Rejection" << endl;
 	printVector(magnetMeansPerp);
 
+	cout << "angles from north" << endl;
+	for(int i = 0; i < magnetMeansPerp.size(); i++){
+		cout << i << ':'<< orientation(magnetMeansPerp[i]) << "\t|" << orientation180(magnetMeansPerp[i]) << endl;
+		cout << i << "::" << orientation(magnetMeans[i]) << "\t|" << orientation180(magnetMeans[i]) << endl << endl;
+	}
+
+
 	//main path:
 	//	-1 
 	//	2
