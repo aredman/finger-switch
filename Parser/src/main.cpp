@@ -304,4 +304,20 @@ int main(int argc, char** argv){
 	//11	6	5	31.74
 	//13	7	6	26.9
 	//17	9	8	12.03
+
+	//create a vector of calculated scales
+	vector<double> finalDistance;
+	finalDistance.push_back(1.25 / edge[1] * vectorMag);
+	finalDistance.push_back(8.57 / edge[2] * vectorMag);
+	finalDistance.push_back(20.78 / edge[3] * vectorMag);
+	finalDistance.push_back(31.74 / edge[5] * vectorMag);
+	finalDistance.push_back(26.90 / edge[6] * vectorMag);
+	finalDistance.push_back(12.03 / edge[8] * vectorMag);
+
+	cout << endl << "Calculated distances" << endl;
+	printVector(finalDistance);
+
+	cout << "Mean:        " << Stats().mean(finalDistance) << endl;
+	cout << "StdDev:      " << Stats().stdDev(finalDistance) << endl;
+	cout << "Uncertainty: " << Stats().accuracy(finalDistance) << endl;
 }
