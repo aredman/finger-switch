@@ -96,3 +96,12 @@ std::vector<double> toCartesian(double r, double theta){
 	returnVector.push_back(r * cos(theta));
 	return returnVector;
 }
+
+template <class Type>
+double vectorMagnitude(Type& input){
+	double sum = 0;
+	for(int i = 0; i < input.size(); i++){
+		sum += input[i] * input[i];
+	}
+	return sqrt(sum);
+}
