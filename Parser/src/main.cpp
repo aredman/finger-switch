@@ -263,6 +263,13 @@ int main(int argc, char** argv){
 	}
 	printVector(edge);
 
+	cout << endl << "converting the vectors to cartesian" << endl;
+	vector< vector<double> > edgeVector;
+	for(int n = 0; n < edge.size(); n++){
+		edgeVector.push_back(toCartesian(edge[n], theta[n]));
 	}
 
+	printVector(edgeVector);
+	
+	
 }
