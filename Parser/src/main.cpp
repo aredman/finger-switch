@@ -219,26 +219,26 @@ int main(int argc, char** argv){
 	//make a table of angles and helpers using the calibrated magnetmeter data
 	//theta refers to the angle of the paths on the edge, and phi refers to the helper angles
 	vector<double> theta, phi;
-	theta.push_back(orientation(magnetMeans[1]) - 4 * atan(1));
-	theta.push_back(orientation(magnetMeans[2]));
-	theta.push_back(orientation(magnetMeans[5]));
-	theta.push_back(orientation(magnetMeans[7]));
-	theta.push_back(orientation(magnetMeans[9]));
-	theta.push_back(orientation(magnetMeans[11]));
-	theta.push_back(orientation(magnetMeans[13]));
-	theta.push_back(orientation(magnetMeans[15]));
-	theta.push_back(orientation(magnetMeans[17]));
-	theta.push_back(orientation(magnetMeans[19]));
+	theta.push_back(orientation(magnetMeansPerp[1]) - 4 * atan(1));
+	theta.push_back(orientation(magnetMeansPerp[2]));
+	theta.push_back(orientation(magnetMeansPerp[5]) - 0.14);
+	theta.push_back(orientation(magnetMeansPerp[7]));
+	theta.push_back(orientation(magnetMeansPerp[9]));
+	theta.push_back(orientation(magnetMeansPerp[11]));
+	theta.push_back(orientation(magnetMeansPerp[13]));
+	theta.push_back(orientation(magnetMeansPerp[15]));
+	theta.push_back(orientation(magnetMeansPerp[17]));
+	theta.push_back(orientation(magnetMeansPerp[19]));
 
-	phi.push_back(orientation(magnetMeans[4]) - 4 * atan(1));
-	phi.push_back(orientation(magnetMeans[3]));
-	phi.push_back(orientation(magnetMeans[6]));
-	phi.push_back(orientation(magnetMeans[8]));
-	phi.push_back(orientation(magnetMeans[10]));
-	phi.push_back(orientation(magnetMeans[12]));
-	phi.push_back(orientation(magnetMeans[14]));
-	phi.push_back(orientation(magnetMeans[16]));
-	phi.push_back(orientation(magnetMeans[18]));
+	phi.push_back(orientation(magnetMeansPerp[4]) - 4 * atan(1));
+	phi.push_back(orientation(magnetMeansPerp[3]));
+	phi.push_back(orientation(magnetMeansPerp[6]) - 0.14);
+	phi.push_back(orientation(magnetMeansPerp[8]));
+	phi.push_back(orientation(magnetMeansPerp[10]));
+	phi.push_back(orientation(magnetMeansPerp[12]));
+	phi.push_back(orientation(magnetMeansPerp[14]));
+	phi.push_back(orientation(magnetMeansPerp[16]));
+	phi.push_back(orientation(magnetMeansPerp[18]));
 
 	cout << "theta" << endl;
 	printVector(theta);
@@ -260,6 +260,11 @@ int main(int argc, char** argv){
 		edge.push_back(abs((sin(abs(theta[n-1] - phi[n-1]))
 		              / sin(abs((theta[n] - phi[n-1]))))
 			      * edge[n-1]));
+		cout << n << endl << "theta[n-1]: " << theta[n-1] << endl;
+		cout << "theta[n]:   " << theta[n] << endl;
+		cout << "phi[n-1]:   " << phi[n-1] << endl;
+		cout << "edge[n-1]:  " << edge[n-1] << endl;
+		
 	}
 	printVector(edge);
 
@@ -316,6 +321,21 @@ int main(int argc, char** argv){
 
 	cout << endl << "Calculated distances" << endl;
 	printVector(finalDistance);
+
+	ofstream gnuplot_vector;
+	gnuplot_vector.open("gnuplot_vector");
+	vector<double> cumulativeVector;
+	cumulativeVector.push_back(0);
+	cumulativeVector.push_back(0);
+	cumulativeVector.push_back(0);
+	for(int i = 0; i < edgeVector.size(); i++){
+		gnuplot_vector << edgeVector[i][0] + cumulativeVector[0] << ';';
+		gnuplot_vector << edgeVector[i][1] + cumulativeVector[1] << endl;
+
+		cumulativeVector[0] += edgeVector[i][0];
+		cumulativeVector[1] += edgeVector[i][1];
+	}
+	gnuplot_vector.close();
 
 	cout << "Mean:        " << Stats().mean(finalDistance) << endl;
 	cout << "StdDev:      " << Stats().stdDev(finalDistance) << endl;
