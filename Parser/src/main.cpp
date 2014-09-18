@@ -282,4 +282,12 @@ int main(int argc, char** argv){
 		}
 	}
 
+
+	//=============================================================
+	cout << "vector sum:";
+	printVector(vectorSum);
+	double vectorMag = vectorMagnitude(vectorSum);
+	cout << "Mag: " << vectorMag << endl;
+
+
 }
