@@ -272,4 +272,14 @@ int main(int argc, char** argv){
 	printVector(edgeVector);
 	
 	
+	vector<double> vectorSum;
+	vectorSum.push_back(0);
+	vectorSum.push_back(0);
+	vectorSum.push_back(0);
+	for(int i = 0; i < edgeVector.size(); i++){
+		for(int j = 0; j < edgeVector[i].size(); j++){
+			vectorSum[j] += edgeVector[i][j];
+		}
+	}
+
 }
