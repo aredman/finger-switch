@@ -290,4 +290,18 @@ int main(int argc, char** argv){
 	cout << "Mag: " << vectorMag << endl;
 
 
+	//=============================================================
+
+
+	//with this, we now have enough information to figure out the probable distance using the measured distances
+	//this currently assumes that these are the xy ditances, with no j component
+
+	//side	edge	scale
+	//2	2	1.25
+	//3		8.57
+	//5	3	8.57
+	//7	4	20.78
+	//11	6	31.74
+	//13	7	26.9
+	//17	9	12.03
 }
