@@ -88,3 +88,11 @@ void printVector(std::vector< std::vector<Type> >& input){
 		std::cout << std::endl;
 	}
 }
+
+//note: from north
+std::vector<double> toCartesian(double r, double theta){
+	std::vector<double> returnVector;
+	returnVector.push_back(r * sin(theta));
+	returnVector.push_back(r * cos(theta));
+	return returnVector;
+}
