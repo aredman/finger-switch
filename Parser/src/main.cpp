@@ -263,36 +263,6 @@ int main(int argc, char** argv){
 	}
 	printVector(edge);
 
-	cout << "doing the same for the rough guestimations" << endl;
-	vector<double> dummyTheta, dummyPhi;
-	dummyTheta.push_back(170);
-	dummyTheta.push_back(90);
-	dummyTheta.push_back(160);
-	dummyTheta.push_back(120);
-	dummyTheta.push_back(180);
-	dummyTheta.push_back(90);
-	dummyTheta.push_back(30);
-	dummyTheta.push_back(110);
-	dummyTheta.push_back(-50);
-	dummyTheta.push_back(70);
-
-	dummyPhi.push_back(40);
-	dummyPhi.push_back(170);
-	dummyPhi.push_back(130);
-	dummyPhi.push_back(160);
-	dummyPhi.push_back(130);
-	dummyPhi.push_back(60);
-	dummyPhi.push_back(80);
-	dummyPhi.push_back(90);
-	dummyPhi.push_back(20);
-
-	vector<double> dummyedge;
-	dummyedge.push_back(1);
-	for(int n = 1; n < 10; n++){
-		dummyedge.push_back((sin(abs(dummyTheta[n-1] - dummyPhi[n-1]))
-		              / sin(abs((dummyTheta[n] - dummyPhi[n-1]))))
-			      * dummyedge[n-1]);
 	}
 
-	printVector(dummyedge);
 }
